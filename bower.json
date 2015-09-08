@@ -8,5 +8,12 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "polymer": "1.0.9",
+    "lesshat": "3.0.2",
+    "iron-pages": "PolymerElements/iron-pages#1.0.3",
+    "lodash": "3.10.1",
+    "q": "1.4.1"
+  }
 }

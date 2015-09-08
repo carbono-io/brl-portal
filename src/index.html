@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>carbono</title>
+
+    <script>
+        window.Polymer = window.Polymer || {};
+        // o default será com isso sem estar comentado :)
+        window.Polymer.dom = 'shadow';
+    </script>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!-- web components -->
+    <link rel="import" href="elements.html">
+</head>
+<body>
+
+    <template id="carbo" is="dom-bind">
+
+        <iron-pages attr-for-selected="data-route" selected="{{ route }}">
+
+            <div data-route="home">
+                home page
+
+                <a href="/login">Faça o login</a>
+            </div>
+
+            <div data-route="login">
+                Olá, faça o seu login aqui
+
+                <a href="/user/1238193">login</a>
+            </div>
+
+            <div data-route="user">
+                pagina do usuario
+
+                <a href="/">home</a>
+            </div>
+
+
+        </iron-pages>
+
+    </template>
+
+    <!-- scripts -->
+    <script type="text/javascript" src="index.bundle.js"></script>
+</body>
+</html>
