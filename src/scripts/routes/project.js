@@ -7,7 +7,14 @@
 // external dependencies
 var page = require('page');
 
-var REQUIRED_SERVICES = ['userService'];
+/**
+ * List of services required for initializing project related routes
+ * @type {Array}
+ */
+var REQUIRED_SERVICES = [
+    'userService',
+    'projectsService'
+];
 
 /**
  * Export a function to define basic routes for router
@@ -21,6 +28,7 @@ module.exports = function (carbo, config, services, components) {
     });
 
     var userService = services.userService;
+    var projectsService = services.projectsService;
 
     /**
      * Listing of projects owned by the user
@@ -28,14 +36,29 @@ module.exports = function (carbo, config, services, components) {
     page('/projects', function () {
 
         // check if user is logged
-        userService.isLogged()
-            .then(function (isLogged) {
-                if (isLogged) {
-                    carbo.set('route', 'projects');
-                } else {
-                    // redirect
-                    page('/login');
-                }
-            });
+        userService.getLoggedUserData()
+            .then(function (userData) {
+                carbo.set('route', 'projects');
+                carbo.set('userData', userData);
+
+                console.log(userData)
+
+                // retrieve projects
+                return projectsService.read({
+                    owner: userData.id
+                });
+
+            }, function (err) {
+                // user not logged
+                // redirect
+                page('/login');
+            })
+            .then(function (userProjects) {
+
+                console.log(userProjects);
+
+                carbo.set('userProjects', userProjects);
+            })
+            .done();
     });
 };

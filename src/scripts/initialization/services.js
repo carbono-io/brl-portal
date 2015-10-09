@@ -6,6 +6,7 @@
  */
 
 // Service classes
+var LocalStorageAPI          = require('../services/local-storage');
 var UserServiceClient        = require('../services/user');
 var ProjectsServiceClient    = require('../services/projects');
 
@@ -13,11 +14,15 @@ var ProjectsServiceClient    = require('../services/projects');
  * Export function that receives carbo and configurations
  */
 module.exports = function (carbo, config) {
+
+    // localstorage service
+    var localStorage = new LocalStorageAPI(config);
     
     // instantiate a user service client,
     // as it is a requirement for all other services
     var userService = new UserServiceClient({
-        location: config.userServiceLocation
+        location: config.userServiceLocation,
+        localStorage: localStorage,
     });
 
     var projectsService = new ProjectsServiceClient({

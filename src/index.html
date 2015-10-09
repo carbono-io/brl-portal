@@ -18,6 +18,8 @@
 
     <template id="carbo" is="dom-bind">
 
+        <div>{{ userData.name }}</div>
+
         <!-- main page set -->
         <iron-pages attr-for-selected="data-route" selected="{{ route }}">
             
@@ -34,10 +36,12 @@
             </div>
 
             <div data-route="projects">
-
-                projects
-                <template is="dom-repeat" items="{{ userProjects }}">
-
+                <template
+                    is="dom-repeat"
+                    items="{{ userProjects }}"
+                    as="project"
+                >
+                    <div>{{ project.name }}</div>
                 </template>
             </div>
 
