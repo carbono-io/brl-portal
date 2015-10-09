@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./header-styles.html">
+
+<dom-module id="carbo-header">
+    <style include="header-styles"></style>
+
+    <template>
+        <div id="header-wrapper">
+
+            <div>{{ userData.name }}</div>
+
+            <div id="header-middle">
+                <content>
+
+                </content>
+            </div>
+
+        </div>
+    </template>
+
+    <script src="header.js"></script>
+</dom-module>

@@ -1,0 +1,15 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="./project-card-styles.html">
+
+<dom-module id="carbo-project-card">
+    <style include="project-card-styles"></style>
+
+    <template>
+        <h1>{{ project.name }}</h1>
+
+        <h3>modified at:</h3>
+        <h2>{{ project.lastModified }}</h2>
+    </template>
+
+    <script src="project-card.js"></script>
+</dom-module>

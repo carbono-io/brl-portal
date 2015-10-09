@@ -2,21 +2,25 @@
     {
         "id": "1",
         "name": "Projeto 1",
-        "owner": "123"
+        "owner": "123",
+        "lastModified": "2015-10-09"
     },
     {
         "id": "2",
         "name": "Projeto 2",
-        "owner": "123"
+        "owner": "123",
+        "lastModified": "2015-10-09"
     },
     {
         "id": "3",
         "name": "Projeto 3",
-        "owner": "123"
+        "owner": "123",
+        "lastModified": "2015-10-09"
     },
     {
         "id": "4",
         "name": "Projeto 4",
-        "owner": "456"
+        "owner": "456",
+        "lastModified": "2015-10-09"
     }
 ]
