@@ -19,25 +19,12 @@
     <template id="carbo" is="dom-bind">
 
         <iron-pages attr-for-selected="data-route" selected="{{ route }}">
+        
+            <div data-route="project-listing">
+                <template is="dom-repeat" items="{{ userProjects }}">
 
-            <div data-route="home">
-                home page
-
-                <a href="/login">Faça o login</a>
+                </template>
             </div>
-
-            <div data-route="login">
-                Olá, faça o seu login aqui
-
-                <a href="/user/1238193">login</a>
-            </div>
-
-            <div data-route="user">
-                pagina do usuario
-
-                <a href="/">home</a>
-            </div>
-
 
         </iron-pages>
 

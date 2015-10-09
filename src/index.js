@@ -1,16 +1,30 @@
+'use strict';
+
 // Scripts dependend upon
 require('./bower_components/webcomponentsjs/webcomponents-lite.js');
 
-var _ = require('lodash');
+// load initialization scripts
+var initServices    = require('./scripts/initialization/services');
+var initComponents  = require('./scripts/initialization/components');
+var initRouter      = require('./scripts/initialization/router');
+var initGlobalScope = require('./scripts/initialization/global-scope');
 
 var carbo = document.getElementById('carbo');
 
-carbo.test = 'test value';
+// Only start setting up thing when WebComponentsReady event is fired
+window.addEventListener('WebComponentsReady', function () {
 
-carbo.router = require('./scripts/router');
+    var config = {};
 
-carbo.user = require('./scripts/services/user');
+    // Services
+    var services   = initServices(carbo, config);        
+    // Components
+    var components = initComponents(carbo, config);
+    // Router
+    var router     = initRouter(carbo, config, services, components);
+    // Set up global scope
+    initGlobalScope(carbo, config, services, components);
+});
 
-carbo.handleLoginSubmit = function () {
-    
-};
+// Export the component scope
+module.exports = carbo;
