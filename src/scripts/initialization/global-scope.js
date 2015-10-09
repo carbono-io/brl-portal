@@ -7,4 +7,8 @@ var CONSTANTS = require('../constants');
  */
 module.exports = function (carbo, config) {
     
+    /**
+     * Array of projects of the user
+     */
+    carbo.set('userProjects', []);
 };

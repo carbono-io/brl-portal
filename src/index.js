@@ -14,7 +14,9 @@ var carbo = document.getElementById('carbo');
 // Only start setting up thing when WebComponentsReady event is fired
 window.addEventListener('WebComponentsReady', function () {
 
-    var config = {};
+    var config = {
+        env: 'development'
+    };
 
     // Services
     var services   = initServices(carbo, config);        
@@ -24,6 +26,12 @@ window.addEventListener('WebComponentsReady', function () {
     var router     = initRouter(carbo, config, services, components);
     // Set up global scope
     initGlobalScope(carbo, config, services, components);
+
+    // if configuration for env is 'development',
+    // initialize developer tools
+    if (config.env === 'development') {
+        require('./scripts/development')(carbo, config, services, components);
+    }
 });
 
 // Export the component scope

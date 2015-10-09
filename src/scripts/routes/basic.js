@@ -12,8 +12,14 @@ var page = require('page');
  */
 module.exports = function (carbo, config, services, components) {
 
-    // home
-    page('/', function () {
-        carbo.set('route', 'home');
+    // home -> projects (redirect)
+    page('/', '/projects');
+
+    page('/login', function () {
+        carbo.set('route', 'login');
+    });
+
+    page('/register', function () {
+        carbo.set('route', 'register');
     });
 };
