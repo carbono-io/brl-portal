@@ -18,13 +18,11 @@
 
     <template id="carbo" is="dom-bind">
 
-        <carbo-header
-            user-data="{{ userData }}"
-        ></carbo-header>
+        <carbo-header></carbo-header>
 
         <!-- main page set -->
         <iron-pages attr-for-selected="data-route" selected="{{ route }}">
-            
+
             <div data-route="home">
                 home
             </div>
@@ -38,15 +36,9 @@
             </div>
 
             <div data-route="projects">
-                <template
-                    is="dom-repeat"
-                    items="{{ userProjects }}"
-                    as="project"
-                >
-                    <carbo-project-card
-                        project="{{ project }}"
-                    ></carbo-project-card>
-                </template>
+                <carbo-project-page
+                    projects="{{ userProjects }}"
+                ></carbo-project-page>
             </div>
 
         </iron-pages>

@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../project-card/project-card.html">
+<link rel="import" href="./project-page-styles.html">
+
+<dom-module id="carbo-project-page">
+    <style include="project-page-styles"></style>
+
+    <template>
+        <div id="project-page-wrapper">
+            <!-- title -->
+            <h1>Meus projetos</h1>
+
+            <!-- create new project -->
+            <a href="#" id="btn-create">Criar Projeto</a>
+
+            <!-- project cards -->
+            <div id="all-projects">
+                <template
+                    is="dom-repeat"
+                    items="{{ projects }}"
+                    as="project"
+                >
+                    <carbo-project-card
+                        project="{{ project }}"
+                    ></carbo-project-card>
+                </template>
+            </div>
+        </div>
+    </template>
+
+    <script src="project-page.js"></script>
+</dom-module>
