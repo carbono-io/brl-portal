@@ -10,6 +10,11 @@
 
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="index.css">
+    <!--
+      javascript libraries come at the top, before elements so
+      that all elements may use them
+    -->
+    <script src="bower_components/i18next/i18next.js"></script>
 
     <!-- web components -->
     <link rel="import" href="elements.html">
@@ -33,7 +38,7 @@
                 login
             </div>
 
-            <div data-route="register">
+            <div data-route="register" data-i18n="test">
                 register
             </div>
 

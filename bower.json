@@ -10,6 +10,7 @@
     "tests"
   ],
   "dependencies": {
+    "i18next": "~1.10.2",
     "iron-pages": "PolymerElements/iron-pages#1.0.3",
     "lesshat": "3.0.2",
     "lodash": "3.10.1",
