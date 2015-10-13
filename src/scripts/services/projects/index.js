@@ -19,6 +19,7 @@ function ProjectsServiceClient(config) {
 ProjectsServiceClient.prototype.read = function (query) {
     var defer = Q.defer();
     var getProjectsUrl = 'http://localhost:7888/account-manager/projects';
+    var defaultImage = '../../../img/placeholder-project-img.png';
     request
         .get(getProjectsUrl)
         .set('Content-Type', 'application/json')
@@ -34,11 +35,13 @@ ProjectsServiceClient.prototype.read = function (query) {
                         res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
                         dateAux = new Date(res.body.data.items[i].project.createdAt);
                         res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
+                        res.body.data.items[i].project.img = defaultImage;
                         projects.push(res.body.data.items[i].project);
                     } catch (e) {
                         // Log
                         res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
                         res.body.data.items[i].project.createdAt = formatBrDate(new Date());
+                        res.body.data.items[i].project.img = defaultImage;
                         projects.push(res.body.data.items[i].project);
                     }
                     
@@ -66,11 +69,14 @@ ProjectsServiceClient.prototype.create = function (data) {
     return defer.promise;
 };
 
-var formatBrDate = function(date) {
-    var months = ['jan','fev','mar','abr','jun','jul','ago',
-    'set','out','nov','dez'];
-    return date.getDate() + ' de ' + months[date.getMonth()] + ' de ' +
-    date.getFullYear();
+var formatBrDate = function(paramDate) {
+    var options = {year: 'numeric', month: 'short', day: 'numeric' };
+    return paramDate.toLocaleDateString('pt-BR', options);
+};
+
+var formatUsDate = function(paramDate) {
+    var options = {year: 'numeric', month: 'short', day: 'numeric' };
+    return paramDate.toLocaleDateString('en-US', options);
 };
 
 // export the class
