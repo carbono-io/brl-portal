@@ -41,7 +41,7 @@ module.exports = function (carbo, config, services, components) {
                 carbo.set('route', 'projects');
                 carbo.set('userData', userData);
 
-                console.log(userData)
+                console.log(userData);
 
                 // retrieve projects
                 return projectsService.read({
