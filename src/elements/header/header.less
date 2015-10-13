@@ -1,3 +1,36 @@
-:host {
-    background-color: red;
+@black: #000;
+@white: #FFF;
+@sidePadding: 32px;
+@headerHeight: 120px;
+@logoHeight: 56px;
+@settingsHeight: 24px;
+
+#header-wrapper {
+    width: 100%;
+    height: @headerHeight;
+    background-color: @black;
+
+    #content {
+        min-width: 700px;
+        max-width: 1200px;
+        width: 80%;
+        margin: auto;
+
+        #logo-img {
+            float: left;
+            height: @logoHeight;
+            top: calc((@headerHeight/2) - (@logoHeight/2));
+            position: relative;
+        }
+
+        #settings {
+            float: right;
+            top: calc((@headerHeight/2) - (@settingsHeight/2));
+            position: relative;
+
+            #settings-img {
+                color: @white;
+            }
+        }
+    }
 }
