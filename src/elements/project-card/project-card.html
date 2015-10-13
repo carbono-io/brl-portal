@@ -6,9 +6,10 @@
 
     <template>
         <h1>{{ project.name }}</h1>
+        <h2>{{ project.description }}</h2>
 
-        <h3>modified at:</h3>
-        <h2>{{ project.lastModified }}</h2>
+        <h3>criado em <span>{{ project.createdAt }}</span></h3>
+        <h3>modificato em <span>{{ project.modifiedAt }}</span></h3>
     </template>
 
     <script src="project-card.js"></script>

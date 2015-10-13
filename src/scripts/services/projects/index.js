@@ -18,26 +18,35 @@ function ProjectsServiceClient(config) {
 
 ProjectsServiceClient.prototype.read = function (query) {
     var defer = Q.defer();
-
+    var getProjectsUrl = 'http://localhost:7888/account-manager/projects';
     request
-        .get('/scripts/services/projects/mock-data.json')
+        .get(getProjectsUrl)
+        .set('Content-Type', 'application/json')
+        .set('crbemail', 'casadei@email.com')
         .set('Accept', 'application/json')
         .end(function (err, res) {
 
-            // Mock
             setTimeout(function () {
-
-                var filteredRes = _.filter(res.body, function (d) {
-                    return _.every(query, function (value, prop) {
-                        return d[prop] === value;
-                    });
-                });
-
-                defer.resolve(filteredRes);
+                var projects = [];
+                for (var i in res.body.data.items) {
+                    try {
+                        var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
+                        res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
+                        dateAux = new Date(res.body.data.items[i].project.createdAt);
+                        res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
+                        projects.push(res.body.data.items[i].project);
+                    } catch (e) {
+                        // Log
+                        res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
+                        res.body.data.items[i].project.createdAt = formatBrDate(new Date());
+                        projects.push(res.body.data.items[i].project);
+                    }
+                    
+                }
+                defer.resolve(projects);
 
             }, 500);
         });
-
 
     return defer.promise;
 };
@@ -55,6 +64,13 @@ ProjectsServiceClient.prototype.create = function (data) {
     }, 1000);
 
     return defer.promise;
+};
+
+var formatBrDate = function(date) {
+    var months = ['jan','fev','mar','abr','jun','jul','ago',
+    'set','out','nov','dez'];
+    return date.getDate() + ' de ' + months[date.getMonth()] + ' de ' +
+    date.getFullYear();
 };
 
 // export the class
