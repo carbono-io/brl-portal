@@ -65,5 +65,105 @@
   cursor: pointer;
   transition: all ease 0.1s;
 }
+#createPopup {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+#createPopup form {
+  margin: 0 auto;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-width: 600px;
+  min-width: 300px;
+  width: 30%;
+  height: 100%;
+}
+#createPopup form h2 {
+  width: 100%;
+  margin-bottom: 40px;
+  font-weight: normal;
+}
+#createPopup form .input-container {
+  margin-bottom: 20px;
+  width: 100%;
+}
+#createPopup form .input-container input {
+  width: 100% ;
+  height: 56px;
+  outline: none;
+  font-size: 16px;
+  color: #707070;
+  border: none;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+#createPopup form .input-container .input-error {
+  display: none;
+}
+#createPopup form .input-container.error input {
+  border: 1px solid coral;
+}
+#createPopup form .input-container.error .input-error {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin: 0;
+  color: coral;
+}
+#createPopup form .input-container.error .input-error p {
+  margin-top: 4px;
+}
+#createPopup form .submit-button {
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 56px;
+  background-color: #EFEFEF;
+  outline: none;
+  width: 100%;
+  margin-top: 30px;
+  cursor: pointer;
+  color: #00DCFF;
+  border: 1px solid #00DCFF;
+  -webkit-appearance: none;
+}
+#createPopup form .submit-button:hover {
+  background-color: #00DCFF;
+  color: white;
+  transition: all ease 0.1s;
+}
+#createPopup form .submit-button:disabled {
+  color: #C6C6C6;
+  border: 1px solid #C6C6C6;
+  cursor: default;
+}
+#createPopup form .submit-button:disabled:hover {
+  background-color: #EFEFEF;
+  color: #C6C6C6;
+}
 
 </style></template></dom-module>

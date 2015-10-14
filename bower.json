@@ -16,6 +16,6 @@
     "polymer": "1.1.5",
     "q": "1.4.1",
     "iron-icons": "PolymerElements/iron-icons#~1.0.4",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.4",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.4"
   }
 }

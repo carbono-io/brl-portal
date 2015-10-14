@@ -1,4 +1,4 @@
-(function () {
+(function (window) {
     'use strict';
 
     // Register the element with Polymer
@@ -14,7 +14,16 @@
 
         openCreatePopup: function() {
             this.$.createPopup.open();
+        },
+
+        submitCreateProject: function (e) {
+            var project = {
+                name: this.newProjName,
+                description: this.newProjDescription
+            };
+
+            console.log(window.services);
         }
     });
 
-})();
+})(window);

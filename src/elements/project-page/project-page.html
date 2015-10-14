@@ -34,7 +34,38 @@
 
         <!-- popup create project -->
         <carbo-popup id="createPopup">
-            
+            <form id="createForm">
+                <h2>Informações sobre o projeto:</h2>
+
+                <div class="input-container">
+                    <input
+                        type="text"
+                        placeholder="nome do projeto*"
+                        name="name"
+                        class="register-data"
+                        maxlength="60"
+                        value="{{newProjName::input}}"
+                    >
+                    <div class="input-error">
+                        <p data-i18n="loginForm.invalidEmail">
+                            O nome do projeto é obrigatório
+                        </p>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <input
+                        type="text"
+                        placeholder="descrição"
+                        name="description"
+                        class="register-data"
+                        maxlength="60"
+                        value="{{newProjDescription::input}}"
+                    >
+                </div>
+
+                <button type="button" class="submit-button" on-click="submitCreateProject">Criar projeto</button>
+            </form>
         </carbo-popup>
     </template>
 
