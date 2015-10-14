@@ -10,6 +10,11 @@
                 type: Array,
                 notify: true
             }
+        },
+
+        openCreatePopup: function() {
+            this.$.createPopup.open();
         }
     });
+
 })();

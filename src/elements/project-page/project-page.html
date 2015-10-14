@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../popup/popup.html">
 <link rel="import" href="../project-card/project-card.html">
 <link rel="import" href="./project-page-styles.html">
 
@@ -7,11 +9,14 @@
 
     <template>
         <div id="project-page-wrapper">
-            <!-- title -->
-            <h1>Meus projetos</h1>
 
-            <!-- create new project -->
-            <a href="#" id="btn-create">Criar Projeto</a>
+            <div id="title-container">
+                <!-- title -->
+                <h1>Meus projetos</h1>
+
+                <!-- create new project -->
+                <button id="btn-create" on-click="openCreatePopup">Criar Projeto</button>
+            </div>
 
             <!-- project cards -->
             <div id="all-projects">
@@ -26,6 +31,11 @@
                 </template>
             </div>
         </div>
+
+        <!-- popup create project -->
+        <carbo-popup id="createPopup">
+            
+        </carbo-popup>
     </template>
 
     <script src="project-page.js"></script>

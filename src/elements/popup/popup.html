@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="./popup-styles.html">
+
+<dom-module id="carbo-popup">
+    <style include="popup-styles"></style>
+
+    <template>
+        <div id="popupWrapper">
+            <div class="container">
+
+                <div class="top-container">
+                    <div id="logo">
+                        <img src="../../img/logo_principal_carbono.png" />
+                    </div>
+
+                    <iron-icon icon="close" id="close" on-click="close"></iron-icon>
+                </div>
+
+                <content></content>
+
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="popup.js"></script>
+</dom-module>

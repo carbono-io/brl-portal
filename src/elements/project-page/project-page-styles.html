@@ -10,8 +10,60 @@
 -->
 
 <dom-module id="project-page-styles"><template><style>
-:host {
-  background-color: red;
+#project-page-wrapper {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-width: 700px;
+  max-width: 1200px;
+  width: 80%;
+  margin: auto;
+}
+#project-page-wrapper #title-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 150px;
+}
+#project-page-wrapper #title-container h1 {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-flex-grow: 2;
+  -ms-flex-positive: 2;
+  flex-grow: 2;
+  font-size: 30px;
+  font-weight: normal;
+  color: #000;
+}
+#project-page-wrapper #title-container button {
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  cursor: pointer;
+  color: #00DCFF;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 56px;
+  padding: 0 56px;
+  box-sizing: border-box;
+  border: 1px solid #00DCFF;
+  text-align: center;
+  margin-top: 16px;
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+}
+#project-page-wrapper #title-container button:hover {
+  background-color: #00DCFF;
+  color: white;
+  cursor: pointer;
+  transition: all ease 0.1s;
 }
 
 </style></template></dom-module>
