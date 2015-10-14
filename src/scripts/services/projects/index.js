@@ -73,12 +73,11 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         .end(function (err, res) {
 
             setTimeout(function () {
-                if (res.body.data.items[0]) {
+                if (res.body.data) {
                     defer.resolve(res.body.data.items[0].project);
                 } else {
                     defer.reject(res.body.error);
                 }
-
             }, 1000);
             
         });
