@@ -63,22 +63,24 @@ ProjectsServiceClient.prototype.create = function (projectData) {
             ],
         }
     );
-    
     var createProjectsUrl = 'http://localhost:7888/account-manager/projects';
     request
         .post(createProjectsUrl)
         .set('Content-Type', 'application/json')
-        .set('crbemail', 'casadei@email.com')
+        .set('crbemail', projectData.email)
         .set('Accept', 'application/json')
         .send(createProjectObj)
         .end(function (err, res) {
 
-            // Mock
             setTimeout(function () {
-
-                console.log(res.body)
+                if (res.body.data.items[0]) {
+                    defer.resolve(res.body.data.items[0].project);
+                } else {
+                    defer.reject(res.body.error);
+                }
 
             }, 1000);
+            
         });
 
     return defer.promise;

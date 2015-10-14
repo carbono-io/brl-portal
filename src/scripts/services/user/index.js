@@ -44,7 +44,8 @@ UserServiceClient.prototype.getLoggedUserData = function () {
     setTimeout(function () {
         defer.resolve({
             id: '123',
-            name: 'Maria'
+            name: 'Maria',
+            email: 'casadei@email.com',
         });
     }, 1000);
 
