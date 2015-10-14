@@ -45,7 +45,8 @@ module.exports = function (carbo, config, services, components) {
 
                 // retrieve projects
                 return projectsService.read({
-                    owner: userData.id
+                    owner: userData.id,
+                    email: userData.email,
                 });
 
             }, function (err) {
@@ -58,7 +59,12 @@ module.exports = function (carbo, config, services, components) {
                 console.log(userProjects);
 
                 carbo.set('userProjects', userProjects);
-            })
+            },
+            function (err) {
+                console.log(err);
+                carbo.set('err', err);
+            }
+        )
             .done();
     });
 };
