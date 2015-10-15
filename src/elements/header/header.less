@@ -1,3 +1,29 @@
+@import "../../less/variables.less";
+
+@headerHeight: 120px;
+@logoHeight: 56px;
+
 :host {
-    background-color: red;
+    display: block;
+    background-color: @black;
+    width: 100%;
+    height: @headerHeight;
+
+    #header-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        .ContentSize;
+
+        #logo-img {
+            height: @logoHeight;
+        }
+
+        #settings {
+            #settings-img {
+                color: @white;
+            }
+        }
+    }
 }

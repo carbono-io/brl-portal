@@ -8,6 +8,9 @@
 var Q = require('q');
 var _ = require('lodash');
 var request = require('superagent');
+var CJM = require('carbono-json-messages');
+var pjson = require('../../../../package.json');
+var uuid = require('node-uuid');
 
 /**
  * Class responsible for dealing with the projects service.
@@ -57,17 +60,43 @@ ProjectsServiceClient.prototype.read = function (data) {
     return defer.promise;
 };
 
-ProjectsServiceClient.prototype.create = function (data) {
+ProjectsServiceClient.prototype.buildCJM = function (data) {
+    var cjm = new CJM({apiVersion: pjson.version});
+    cjm.setData(data);
+    return cjm.toObject();
+};
 
+ProjectsServiceClient.prototype.create = function (projectData) {
     var defer = Q.defer();
+    var createProjectObj = this.buildCJM(
+        {
+            id: uuid.v4(),
+            items: [
+                {
+                    name: projectData.name,
+                    description: projectData.description,
+                },
+            ],
+        }
+    );
+    var createProjectsUrl = 'http://localhost:7888/account-manager/projects';
+    request
+        .post(createProjectsUrl)
+        .set('Content-Type', 'application/json')
+        .set('crbemail', projectData.email)
+        .set('Accept', 'application/json')
+        .send(createProjectObj)
+        .end(function (err, res) {
 
-    setTimeout(function () {
-
-        defer.resolve({
-            id: _.uniqueId('project_')
+            setTimeout(function () {
+                if (res.body.data) {
+                    defer.resolve(res.body.data.items[0].project);
+                } else {
+                    defer.reject(res.body.error);
+                }
+            }, 1000);
+            
         });
-
-    }, 1000);
 
     return defer.promise;
 };

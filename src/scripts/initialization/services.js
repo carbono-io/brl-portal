@@ -9,6 +9,7 @@
 var LocalStorageAPI          = require('../services/local-storage');
 var UserServiceClient        = require('../services/user');
 var ProjectsServiceClient    = require('../services/projects');
+var RedirectService          = require('../services/redirects');
 
 /**
  * Export function that receives carbo and configurations
@@ -29,12 +30,17 @@ module.exports = function (carbo, config) {
         location: config.projectsServiceLocation,
         userService: userService,
     });
+    
+    var redirectService = new RedirectService({
+        userService: userService,
+    });
 
     // set services onto carbo main scope, so that
     // all components may have access to them.
     carbo.set('services', {});
     carbo.set('services.userService', userService);
     carbo.set('services.projectsService', projectsService);
+    carbo.set('services.redirectService', redirectService);
 
     // return all services as a result of the initialization
     return carbo.get('services');

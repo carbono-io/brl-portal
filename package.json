@@ -44,9 +44,11 @@
     "watchify": "^3.4.0"
   },
   "dependencies": {
+    "carbono-json-messages": "0.0.2",
     "lodash": "^3.10.1",
     "merge-stream": "^1.0.0",
     "mkdirp": "^0.5.1",
+    "node-uuid": "^1.4.3",
     "page": "^1.6.3",
     "q": "^1.4.1",
     "superagent": "^1.4.0"

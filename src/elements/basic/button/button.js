@@ -3,6 +3,7 @@
 
     // Register the element with Polymer
     Polymer({
-        is: 'carbo-header'
+        is: 'carbo-button',
+        extends: 'button'
     });
 })();

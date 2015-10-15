@@ -13,7 +13,8 @@ var page = require('page');
  */
 var REQUIRED_SERVICES = [
     'userService',
-    'projectsService'
+    'projectsService',
+    'redirectService'
 ];
 
 /**
@@ -41,7 +42,7 @@ module.exports = function (carbo, config, services, components) {
                 carbo.set('route', 'projects');
                 carbo.set('userData', userData);
 
-                console.log(userData)
+                console.log(userData);
 
                 // retrieve projects
                 return projectsService.read({
@@ -63,6 +64,40 @@ module.exports = function (carbo, config, services, components) {
             function (err) {
                 console.log(err);
                 carbo.set('err', err);
+            }
+        )
+            .done();
+    });
+    
+    page('/createProject', function () {
+
+        // check if user is logged
+        userService.getLoggedUserData()
+            .then(function (userData) {
+                carbo.set('route', 'projects');
+                carbo.set('userData', userData);
+
+                // create Project
+                return projectsService.create({
+                    owner: userData.id,
+                    email: userData.email,
+                    name: 'Project created with BRL',
+                    description: 'Description of the project',
+                });
+
+            }, function (err) {
+                // user not logged
+                // redirect
+                page('/login');
+            })
+            .then(function (projectCreated) {
+
+                console.log(projectCreated);
+
+                carbo.set('projectCreated', projectCreated);
+            }, function (err) {
+                console.log(err);
+                carbo.set('error', err);
             }
         )
             .done();

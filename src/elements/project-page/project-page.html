@@ -1,0 +1,83 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../basic/popup/popup.html">
+<link rel="import" href="../basic/button/button.html">
+<link rel="import" href="../project-card/project-card.html">
+<link rel="import" href="./project-page-styles.html">
+
+<dom-module id="carbo-project-page">
+    <style include="project-page-styles"></style>
+
+    <template>
+        <div id="project-page-wrapper">
+
+            <div id="title-container">
+                <!-- title -->
+                <h1>Meus projetos</h1>
+
+                <!-- create new project -->
+                <button is="carbo-button" id="btnCreate" on-click="openCreatePopup">Criar Projeto</button>
+            </div>
+
+            <!-- project cards -->
+            <div id="all-projects">
+                <template
+                    is="dom-repeat"
+                    items="{{ projects }}"
+                    as="project"
+                >
+                    <carbo-project-card
+                        project="{{ project }}"
+                    ></carbo-project-card>
+                </template>
+            </div>
+        </div>
+
+        <!-- popup create project -->
+        <carbo-popup id="createPopup">
+            <form id="createForm">
+                <h2>Informações sobre o projeto:</h2>
+
+                <div class="input-container">
+                    <input
+                        id="projectName"
+                        type="text"
+                        required="true"
+                        placeholder="nome do projeto*"
+                        name="name"
+                        class="register-data"
+                        maxlength="60"
+                        value="{{newProjName::input}}"
+                    >
+                    <div class="input-error">
+                        <p data-i18n="createForm.invalidProjectName">
+                            O nome do projeto é obrigatório
+                        </p>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <textarea
+                        id="projectDescription"
+                        name="description"
+                        placeholder="descrição do projeto"
+                        class="register-data"
+                        value="{{newProjDescription::input}}"
+                    ></textarea>
+                </div>
+                <p data-i18n="createForm.required" class= "required">*Respostas obrigatórias</p>
+                
+                <button 
+                    id="createProjectButton"
+                    type="button"
+                    is="carbo-button"
+                    data-i18n="[value]createForm.submit"
+                    class="submit-button"
+                    on-click="submitCreateProject"
+                >Criar projeto</button>
+            </form>
+        </carbo-popup>
+    </template>
+
+    <script src="project-page.js"></script>
+</dom-module>
