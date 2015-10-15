@@ -26,10 +26,11 @@
         color: #C6C6C6;
         border: 1px solid #C6C6C6;
         cursor: default;
+    }
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.0);
-            color: #C6C6C6;
-        }
+    &(:disabled:hover) {
+        background-color: rgba(255, 255, 255, 0.0);
+        color: #C6C6C6;
+        cursor: default;
     }
 }
