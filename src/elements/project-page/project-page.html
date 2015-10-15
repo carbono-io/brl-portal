@@ -40,6 +40,7 @@
                 <div class="input-container">
                     <input
                         type="text"
+                        required="true"
                         placeholder="nome do projeto*"
                         name="name"
                         class="register-data"
@@ -54,14 +55,12 @@
                 </div>
 
                 <div class="input-container">
-                    <input
-                        type="text"
-                        placeholder="descrição"
+                    <textarea
                         name="description"
+                        placeholder="descrição do projeto"
                         class="register-data"
-                        maxlength="60"
                         value="{{newProjDescription::input}}"
-                    >
+                    ></textarea>
                 </div>
 
                 <button type="button" class="submit-button" on-click="submitCreateProject">Criar projeto</button>

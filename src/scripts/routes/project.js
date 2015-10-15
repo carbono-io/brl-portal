@@ -13,7 +13,8 @@ var page = require('page');
  */
 var REQUIRED_SERVICES = [
     'userService',
-    'projectsService'
+    'projectsService',
+    'redirectService'
 ];
 
 /**
