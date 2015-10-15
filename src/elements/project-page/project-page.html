@@ -39,6 +39,7 @@
 
                 <div class="input-container">
                     <input
+                        id="projectName"
                         type="text"
                         required="true"
                         placeholder="nome do projeto*"
@@ -48,7 +49,7 @@
                         value="{{newProjName::input}}"
                     >
                     <div class="input-error">
-                        <p data-i18n="loginForm.invalidEmail">
+                        <p data-i18n="createForm.invalidProjectName">
                             O nome do projeto é obrigatório
                         </p>
                     </div>
@@ -56,14 +57,24 @@
 
                 <div class="input-container">
                     <textarea
+                        id="projectDescription"
                         name="description"
                         placeholder="descrição do projeto"
                         class="register-data"
                         value="{{newProjDescription::input}}"
                     ></textarea>
                 </div>
+                <p data-i18n="createForm.required" class= "required">*Respostas obrigatórias</p>
 
-                <button type="button" class="submit-button" on-click="submitCreateProject">Criar projeto</button>
+                <input
+                    id="createProjectButton"
+                    type="button"
+                    is="carbo-button"
+                    data-i18n="[value]createForm.submit"
+                    value="Criar projeto"
+                    class="submit-button"
+                    on-click="submitCreateProject"
+                >
             </form>
         </carbo-popup>
     </template>
