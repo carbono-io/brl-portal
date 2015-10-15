@@ -1,4 +1,4 @@
-@black: #000;
+@import "../../../less/variables.less";
 
 :host {
     #popupWrapper {
@@ -8,7 +8,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--popup-background-color, rgba(239, 239, 239, 0.95));
+            background: @popup-background;
             margin: 0px;
             padding: 0px;
             bottom: 0px;
@@ -45,7 +45,7 @@
             bottom: 0px;
             right: 0px;
             left: 0px;
-            background-color: var(--popup-background-color, rgba(239, 239, 239, 0.95));
+            background-color: @popup-background;
             position: fixed;
             height: 100%;
             display: flex;

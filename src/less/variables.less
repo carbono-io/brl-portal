@@ -14,6 +14,8 @@
 @mediumgrey: #D2D2D2;
 @grey: #B9B9B9;
 @darkgrey: #6D6D6D;
+@black: #000;
+@darkblue: #00DCFF;
 @popup-background: rgba(239, 239, 239, 0.95);
 
 // font-sizes
@@ -43,3 +45,11 @@
 // proportion of phone Nexus 5
 // without buttons bar and status bar
 @phone-proportion: 568/360;
+
+// ------------- mixins -------------
+.ContentSize(@width: 80%) {
+    min-width: 700px;
+    max-width: 1200px;
+    width: @width;
+    margin: auto;
+};

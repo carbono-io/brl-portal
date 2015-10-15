@@ -1,19 +1,13 @@
-@blue: #00FFFF;
-@black: #000;
-@light-grey: #EFEFEF;
-@medium-grey: #707070;
-@dark-blue: #00DCFF;
+@import "../../less/variables.less";
+
 @titleHeight: 50px;
 
 :host {
     #project-page-wrapper {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: @font-family, sans-serif;
         line-height: 1.5;
         overflow-x: hidden;
-        min-width: 700px;
-        max-width: 1200px;
-        width: 80%;
-        margin: auto;
+        .ContentSize;
 
         #title-container {
             display: flex;
@@ -57,14 +51,14 @@
                 margin-bottom: 40px;
                 font-weight: normal;
             }
-            
+
             textarea {
 
                 width: 100% ;
                 height: 160px;
                 outline:none;
                 font-size: 16px;
-                color: @medium-grey;
+                color: @mediumgrey;
                 border: none;
                 padding: 16px;
                 box-sizing: border-box;
@@ -80,12 +74,12 @@
                     height: 56px;
                     outline:none;
                     font-size: 16px;
-                    color: @medium-grey;
+                    color: @mediumgrey;
                     border: none;
                     padding-left: 16px;
                     box-sizing: border-box;
                 }
-                
+
                 textarea {
                     border: 1px solid coral;
                 }
