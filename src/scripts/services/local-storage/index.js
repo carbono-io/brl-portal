@@ -10,9 +10,6 @@ var fakeData = {
     userToken: '10293inkj1y37812y12301i2jeio123'
 };
 
-_.each(fakeData, function (value, key) {
-    window.localStorage.setItem(key, value);
-});
 
 
 

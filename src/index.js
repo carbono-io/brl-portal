@@ -8,7 +8,6 @@ var initServices    = require('./scripts/initialization/services');
 var initComponents  = require('./scripts/initialization/components');
 var initRouter      = require('./scripts/initialization/router');
 var initGlobalScope = require('./scripts/initialization/global-scope');
-require('./scripts/validation.js');
 
 var carbo = document.getElementById('carbo');
 
