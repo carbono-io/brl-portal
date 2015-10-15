@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../popup/popup.html">
+<link rel="import" href="../button/button.html">
 <link rel="import" href="../project-card/project-card.html">
 <link rel="import" href="./project-page-styles.html">
 
@@ -15,7 +16,7 @@
                 <h1>Meus projetos</h1>
 
                 <!-- create new project -->
-                <button id="btn-create" on-click="openCreatePopup">Criar Projeto</button>
+                <button is="carbo-button" id="btnCreate" on-click="openCreatePopup">Criar Projeto</button>
             </div>
 
             <!-- project cards -->
@@ -65,16 +66,15 @@
                     ></textarea>
                 </div>
                 <p data-i18n="createForm.required" class= "required">*Respostas obrigatórias</p>
-
-                <input
+                
+                <button 
                     id="createProjectButton"
                     type="button"
                     is="carbo-button"
                     data-i18n="[value]createForm.submit"
-                    value="Criar projeto"
                     class="submit-button"
                     on-click="submitCreateProject"
-                >
+                >Criar projeto</button>
             </form>
         </carbo-popup>
     </template>

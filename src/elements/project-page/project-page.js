@@ -50,7 +50,7 @@
             this.$.projectName.value = '';
             this.$.projectName.parentElement.className = "input-container";
             this.$.projectDescription.value = '';
-            this.$.createProjectButton.disabled = false;
+            this.$.createProjectButton.disabled = true;
             // Open
             this.$.createPopup.open();
         },
@@ -65,6 +65,7 @@
             var redirectService = window.services.redirectService;
             var carbo = window.carbo;
             // check if user is logged
+            popup.toggleLoading(true);
             userService.getLoggedUserData()
                 .then(function (userData) {
                     carbo.set('userData', userData);
@@ -78,16 +79,19 @@
 
                 }, function (err) {
                     // user not logged
+                    popup.toggleLoading(false);
                     alert('Sessão expirada, por favor, faça login novamente');
                     popup.close();
                     redirectService.redirectLogin();
                 })
                 .then(function (projectCreated) {
+                    popup.toggleLoading(false);
                     alert('Projeto criado com sucesso!');
                     popup.close();
                     redirectService.redirectProjects();
                     // Message and page redirect
                 }, function (err) {
+                    popup.toggleLoading(false);
                     if (err.code === 403) {
                         alert('Sessão expirada, por favor, faça login novamente');
                         popup.close();

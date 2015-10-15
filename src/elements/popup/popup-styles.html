@@ -23,7 +23,7 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(239, 239, 239, 0.95);
+  background: var(--popup-background-color, rgba(239, 239, 239, 0.95));
   margin: 0px;
   padding: 0px;
   bottom: 0px;
@@ -40,9 +40,9 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: baseline;
-  -ms-flex-align: baseline;
-  align-items: baseline;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -53,10 +53,16 @@
   color: #000;
   cursor: pointer;
 }
-:host #popupWrapper.active .loading-state {
+:host #loadingState {
   display: none;
 }
-:host #popupWrapper.active .loading-state.active {
+:host #loadingState.active {
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: var(--popup-background-color, rgba(239, 239, 239, 0.95));
+  position: fixed;
   height: 100%;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -71,7 +77,7 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
-:host #popupWrapper.active .loading-state.active .spinner {
+:host #loadingState.active .spinner {
   width: 40px;
   height: 40px;
   background-color: #333;

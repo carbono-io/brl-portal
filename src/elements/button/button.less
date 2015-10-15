@@ -1,0 +1,35 @@
+@dark-blue: #00DCFF;
+
+:host {
+    font-family: 'Source Sans Pro', sans-serif;
+    cursor: pointer;
+    color: @dark-blue;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 56px;
+    padding: 0 56px;
+    box-sizing: border-box;
+    border: 1px solid @dark-blue;
+    text-align: center;
+    margin-top: 16px;
+    background-color: rgba(255, 255, 255, 0.0);
+    outline:none;
+
+    &(:hover) {
+        background-color: @dark-blue;
+        color: white;
+        cursor: pointer;
+        transition: all ease 0.1s;
+    }
+
+    &(:disabled) {
+        color: #C6C6C6;
+        border: 1px solid #C6C6C6;
+        cursor: default;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.0);
+            color: #C6C6C6;
+        }
+    }
+}
