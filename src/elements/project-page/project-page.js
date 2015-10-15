@@ -28,7 +28,6 @@
                 } else {
                     submitButton.disabled = true;
                 }
-
             }
             
             // validates Project Name
