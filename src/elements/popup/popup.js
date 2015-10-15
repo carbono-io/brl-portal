@@ -6,11 +6,15 @@
         is: 'carbo-popup',
 
         open: function () {
-            this.$.popupWrapper.setAttribute("class", "active");
+            this.toggleClass("active", true, this.$.popupWrapper);
         },
 
         close: function () {
-            this.$.popupWrapper.removeAttribute("class");
+            this.toggleClass("active", false, this.$.popupWrapper);
+        },
+
+        toggleLoading: function (toggle) {
+            this.toggleClass("active", toggle, this.$.loadingState);
         }
     });
 })();

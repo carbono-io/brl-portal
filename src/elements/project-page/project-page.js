@@ -22,7 +22,7 @@
                 description: this.newProjDescription
             };
 
-            console.log(window.services);
+            this.$.createPopup.toggleLoading(true);
         }
     });
 
