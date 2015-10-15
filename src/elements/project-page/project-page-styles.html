@@ -23,23 +23,18 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   height: 150px;
 }
 :host #project-page-wrapper #title-container h1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-flex-grow: 2;
-  -ms-flex-positive: 2;
-  flex-grow: 2;
   font-size: 30px;
   font-weight: normal;
   color: #000;
-}
-:host #project-page-wrapper #title-container #btnCreate {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
 }
 :host #createPopup {
   display: -webkit-flex;
@@ -78,15 +73,11 @@
   margin-bottom: 40px;
   font-weight: normal;
 }
-:host #createPopup form textarea {
-  width: 100% ;
-  height: 160px;
-  outline: none;
-  font-size: 16px;
-  color: #D2D2D2;
-  border: none;
-  padding: 16px;
-  box-sizing: border-box;
+:host #createPopup form p {
+  width: 100%;
+  margin: 0px 0px 0px 16px;
+  line-height: 1;
+  text-align: left;
 }
 :host #createPopup form .input-container {
   margin-bottom: 20px;
@@ -103,12 +94,22 @@
   box-sizing: border-box;
 }
 :host #createPopup form .input-container textarea {
-  border: 1px solid coral;
+  width: 100% ;
+  height: 160px;
+  outline: none;
+  font-size: 16px;
+  color: #D2D2D2;
+  border: none;
+  padding: 16px;
+  box-sizing: border-box;
 }
 :host #createPopup form .input-container .input-error {
   display: none;
 }
 :host #createPopup form .input-container.error input {
+  border: 1px solid coral;
+}
+:host #createPopup form .input-container.error textarea {
   border: 1px solid coral;
 }
 :host #createPopup form .input-container.error .input-error {
@@ -126,6 +127,7 @@
 }
 :host #createPopup form .input-container.error .input-error p {
   margin-top: 4px;
+  margin-left: 16px;
 }
 :host #createPopup form .submit-button {
   width: 100%;
