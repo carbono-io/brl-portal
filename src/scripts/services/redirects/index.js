@@ -15,7 +15,7 @@ function RedirectService() {
 
 RedirectService.prototype.redirectProjects = function () {
     
-    page('/');
+    page('/brl');
 };
 
 RedirectService.prototype.redirectLogin = function () {

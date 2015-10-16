@@ -20,13 +20,15 @@ function ProjectsServiceClient(config) {
 }
 
 ProjectsServiceClient.prototype.read = function (data) {
+    var token = window.localStorage.getItem("token");
+    console.log("the stored token was " + token);
     var defer = Q.defer();
-    var getProjectsUrl = 'http://localhost:7888/account-manager/projects';
-    var defaultImage = '../../../img/placeholder-project-img.png';
+    var getProjectsUrl = 'http://localhost:7877/imperial/projects';
+    var defaultImage = '../../../brl/img/placeholder-project-img.png';
     request
         .get(getProjectsUrl)
         .set('Content-Type', 'application/json')
-        .set('crbemail', data.email)
+        .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function (err, res) {
 
@@ -79,11 +81,12 @@ ProjectsServiceClient.prototype.create = function (projectData) {
             ],
         }
     );
-    var createProjectsUrl = 'http://localhost:7888/account-manager/projects';
+    var createProjectsUrl = 'http://localhost:7877/imperial/projects';
+    var token = window.localStorage.getItem("token");
     request
         .post(createProjectsUrl)
         .set('Content-Type', 'application/json')
-        .set('crbemail', projectData.email)
+        .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .send(createProjectObj)
         .end(function (err, res) {
@@ -92,6 +95,7 @@ ProjectsServiceClient.prototype.create = function (projectData) {
                 if (res.body.data) {
                     defer.resolve(res.body.data.items[0].project);
                 } else {
+                    console.log(res.body.error)
                     defer.reject(res.body.error);
                 }
             }, 1000);

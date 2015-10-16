@@ -20,6 +20,9 @@ module.exports = function (gulp, $) {
             port: 4000,
             server: {
                 baseDir: 'src',
+                routes: {
+                    '/brl': './src',
+                },
             },
             open: true,
             // tunnel: true
