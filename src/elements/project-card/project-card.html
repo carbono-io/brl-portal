@@ -5,12 +5,16 @@
     <style include="project-card-styles"></style>
 
     <template>
-        <img src="{{ project.img }}"></img>
-        <h1>{{ project.name }}</h1>
-        <h2>{{ project.description }}</h2>
+        <div class="wrapper">
+            <img src="{{ project.img }}"></img>
+            <div class="info">
+                <h1 class="name">{{ project.name }}</h1>
+                <h2 class="description">{{ project.description }}</h2>
 
-        <h3>criado em <span>{{ project.createdAt }}</span></h3>
-        <h3>modificato em <span>{{ project.modifiedAt }}</span></h3>
+                <h3>criado em <span>{{ project.createdAt }}</span></h3>
+                <h3>modificado em <span>{{ project.modifiedAt }}</span></h3>
+            </div>
+        </div>
     </template>
 
     <script src="project-card.js"></script>

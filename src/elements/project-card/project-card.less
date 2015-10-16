@@ -1,3 +1,38 @@
+@import "../../less/variables.less";
+
 :host {
-    background-color: red;
+    .wrapper {
+        font-family: @font-family, sans-serif;
+        -webkit-box-shadow: 0px 5px 10px 0px @grey;
+        -moz-box-shadow: 0px 5px 10px 0px @grey;
+        box-shadow: 0px 5px 10px 0px @grey;
+        margin: 5% 0;
+
+        img {
+            width: 320px;
+            height: 200px;
+            overflow: hidden;
+            border: @mediumgrey 1px solid;
+        }
+
+        .info {
+            padding: 32px;
+            background-color: @white;
+            font-weight: @regular;
+            color: @black;
+
+            .name {
+                font-size: 18px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            h3 {
+                font-size: 12px;
+                margin: 0px;
+            }
+        }
+    }
 }

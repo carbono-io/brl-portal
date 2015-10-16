@@ -7,6 +7,7 @@
         properties: {
             projects: {
                 type: Array,
+                observer: '_showProjects',
                 notify: true
             }
         },
@@ -19,7 +20,7 @@
             submitButton.disabled = true;
             // project name beggins invalid
             var validName = false;
-            
+
             // function to enable/disable submit-button
             function enableDisableSubmitButton() {
                 // check if input validations are true
@@ -29,7 +30,7 @@
                     submitButton.disabled = true;
                 }
             }
-            
+
             // validates Project Name
             function validateProjectName() {
                 var value = projectNameInput.value;
@@ -103,7 +104,20 @@
                 }
             )
                 .done();
+        },
+
+        _showProjects: function(newValue, oldValue) {
+            // var loading = this.projects === null;
+            var loading = false;
+            var hasProjects = !loading && this.projects && this.projects.length > 0;
+
+            this.toggleClass('empty', !hasProjects, this.$.allProjects);
+            this.toggleClass('projects', hasProjects, this.$.allProjects);
+
+            this.toggleClass('hidden', loading || hasProjects, this.$$("#allProjects h2"));
+            this.toggleClass('hidden', loading || !hasProjects, this.$$("#allProjects template"));
         }
+
     });
 
 })(window);
