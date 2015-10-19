@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../basic/popup/popup.html">
 <link rel="import" href="./project-card-styles.html">
 
 <dom-module id="carbo-project-card">
@@ -6,7 +7,12 @@
 
     <template>
         <div class="wrapper">
-            <img src="{{ project.img }}"></img>
+            <div class="editProject">
+                <img src="{{ project.img }}"></img>
+                <div>
+                    <button is="carbo-button" on-click="editProject">Editar projeto</button>
+                </div>
+            </div>
             <div class="info">
                 <h1 class="name">{{ project.name }}</h1>
                 <h2 class="description">{{ project.description }}</h2>
@@ -15,6 +21,11 @@
                 <h3>modificado em <span>{{ project.modifiedAt }}</span></h3>
             </div>
         </div>
+        <carbo-popup id="loadingProject">
+            <div>
+                <h2>Carregando projeto <span>{{project.name}}</span>...</h2>
+            </div>
+        </caro-popup>
     </template>
 
     <script src="project-card.js"></script>

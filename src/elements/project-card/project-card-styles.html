@@ -12,14 +12,22 @@
 <dom-module id="project-card-styles"><template><style>
 :host .wrapper {
   font-family: "Source Sans Pro", sans-serif;
-  box-shadow: 0px 5px 10px 0px #B9B9B9;
+  box-shadow: 0px 5px 10px 0px #E6E6E6;
   margin: 5% 0;
 }
-:host .wrapper img {
+:host .wrapper .editProject {
+  position: relative;
   width: 320px;
   height: 200px;
-  overflow: hidden;
-  border: #D2D2D2 1px solid;
+  border: #707070 1px solid;
+}
+:host .wrapper .editProject img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+:host .wrapper .editProject div {
+  display: none;
 }
 :host .wrapper .info {
   padding: 32px;
@@ -36,6 +44,34 @@
 :host .wrapper .info h3 {
   font-size: 12px;
   margin: 0px;
+}
+:host #loadingProject div {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+:host(:hover) .editProject div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #EFEFEF;
 }
 
 </style></template></dom-module>

@@ -21,7 +21,6 @@
 
             <!-- project cards -->
             <div id="allProjects">
-                <h2>Nenhum projeto criado :(</h2>
                 <template
                     is="dom-repeat"
                     items="{{ projects }}"
@@ -66,7 +65,7 @@
                         value="{{newProjDescription::input}}"
                     ></textarea>
                 </div>
-                <p data-i18n="createForm.required" class= "required">*Respostas obrigatórias</p>
+                <p data-i18n="createForm.required" class= "required">*Campos obrigatórios</p>
 
                 <button
                     id="createProjectButton"
