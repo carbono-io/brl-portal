@@ -23,35 +23,43 @@ ProjectsServiceClient.prototype.read = function (data) {
     var defer = Q.defer();
     var getProjectsUrl = 'http://localhost:7888/account-manager/projects';
     var defaultImage = '../../../img/placeholder-project-img.png';
+
     request
         .get(getProjectsUrl)
         .set('Content-Type', 'application/json')
         .set('crbemail', data.email)
         .set('Accept', 'application/json')
         .end(function (err, res) {
-            if (res.body.data) {
-                var projects = [];
-                for (var i in res.body.data.items) {
-                    try {
-                        var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
-                        res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
-                        dateAux = new Date(res.body.data.items[i].project.createdAt);
-                        res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
-                        res.body.data.items[i].project.img = defaultImage;
-                        projects.push(res.body.data.items[i].project);
-                    } catch (e) {
-                        // Log
-                        res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
-                        res.body.data.items[i].project.createdAt = formatBrDate(new Date());
-                        res.body.data.items[i].project.img = defaultImage;
-                        projects.push(res.body.data.items[i].project);
+
+            setTimeout(function () {
+                if (res && res.body.data) {
+                    var projects = [];
+                    for (var i in res.body.data.items) {
+                        try {
+                            var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
+                            res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
+                            dateAux = new Date(res.body.data.items[i].project.createdAt);
+                            res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
+                            res.body.data.items[i].project.img = defaultImage;
+                            projects.push(res.body.data.items[i].project);
+                        } catch (e) {
+                            // Log
+                            res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
+                            res.body.data.items[i].project.createdAt = formatBrDate(new Date());
+                            res.body.data.items[i].project.img = defaultImage;
+                            projects.push(res.body.data.items[i].project);
+                        }
+
                     }
-                    
+                    defer.resolve(projects);
+                } else {
+                    if (res) {
+                        defer.reject(res.body.error);
+                    } else {
+                        defer.reject();
+                    }
                 }
-                defer.resolve(projects);
-            } else {
-                defer.reject(res.body.error);
-            }
+            }, 500);
         });
 
     return defer.promise;
@@ -84,11 +92,19 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         .set('Accept', 'application/json')
         .send(createProjectObj)
         .end(function (err, res) {
-            if (res.body.data) {
-                defer.resolve(res.body.data.items[0].project);
-            } else {
-                defer.reject(res.body.error);
-            }
+
+            setTimeout(function () {
+                if (res) {
+                    if (res.body.data) {
+                        defer.resolve(res.body.data.items[0].project);
+                    } else {
+                        defer.reject(res.body.error);
+                    }
+                } else {
+                    defer.reject();
+                }
+            }, 1000);
+
         });
 
     return defer.promise;

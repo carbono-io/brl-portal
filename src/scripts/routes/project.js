@@ -64,11 +64,12 @@ module.exports = function (carbo, config, services, components) {
             function (err) {
                 console.log(err);
                 carbo.set('err', err);
+                page('/error');
             }
         )
             .done();
     });
-    
+
     page('/createProject', function () {
 
         // check if user is logged
@@ -98,6 +99,7 @@ module.exports = function (carbo, config, services, components) {
             }, function (err) {
                 console.log(err);
                 carbo.set('error', err);
+                page('/error');
             }
         )
             .done();

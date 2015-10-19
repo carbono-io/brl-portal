@@ -51,6 +51,8 @@
             this.$.projectName.parentElement.className = "input-container";
             this.$.projectDescription.value = '';
             this.$.createProjectButton.disabled = true;
+            this.buttonContent = "Criar projeto";
+            this.toggleClass('general-error', false, this.$.createForm);
             // Open
             this.$.createPopup.open();
         },
@@ -59,6 +61,7 @@
                 name: this.newProjName,
                 description: this.newProjDescription || "",
             };
+            var thisElement = this;
             var popup = this.$.createPopup;
             var userService = window.services.userService;
             var projectsService = window.services.projectsService;
@@ -103,13 +106,21 @@
                     }
                 }
             )
-                .done();
+            .catch(function (err) {
+                popup.toggleLoading(false);
+                thisElement.toggleClass('general-error', true, thisElement.$.createForm);
+                thisElement.buttonContent = 'Tentar novamente';
+            })
+            .done();
         },
 
         _showProjects: function(newValue, oldValue) {
-            // var loading = this.projects === null;
-            var loading = false;
+            var loading = this.projects === null;
             var hasProjects = !loading && this.projects && this.projects.length > 0;
+
+            if (!loading && !hasProjects) {
+                this.openCreatePopup();
+            }
 
             this.toggleClass('empty', !hasProjects, this.$.allProjects);
             this.toggleClass('projects', hasProjects, this.$.allProjects);

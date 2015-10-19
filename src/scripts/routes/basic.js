@@ -22,4 +22,8 @@ module.exports = function (carbo, config, services, components) {
     page('/register', function () {
         carbo.set('route', 'register');
     });
+
+    page('/error', function () {
+        carbo.set('route', 'error');
+    });
 };
