@@ -98,7 +98,7 @@ module.exports = function (carbo, config, services, components) {
                 carbo.set('projectCreated', projectCreated);
             }, function (err) {
                 console.log(err);
-                carbo.set('error', err);
+                carbo.set('err', err);
                 page('/error');
             }
         )

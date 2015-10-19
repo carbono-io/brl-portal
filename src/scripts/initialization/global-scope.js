@@ -16,4 +16,9 @@ module.exports = function (carbo, config) {
      * Array of projects of the user
      */
     carbo.set('userProjects', null);
+
+    /**
+     * Error
+     */
+    carbo.set('err', null);
 };
