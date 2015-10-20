@@ -6,11 +6,10 @@
         -webkit-box-shadow: 0px 5px 10px 0px @shadows;
         -moz-box-shadow: 0px 5px 10px 0px @shadows;
         box-shadow: 0px 5px 10px 0px @shadows;
-        margin: 5% 0;
+        // width: 320px;
 
         .editProject {
             position: relative;
-            width: 320px;
             height: 200px;
             border: @grey 1px solid;
 
@@ -28,18 +27,20 @@
         .info {
             padding: 32px;
             background-color: @white;
-            font-weight: @regular;
             color: @black;
 
             .name {
+                font-weight: @regular;
                 font-size: 18px;
             }
 
             .description {
+                font-weight: @regular;
                 font-size: 14px;
             }
 
             h3 {
+                font-weight: @light;
                 font-size: 12px;
                 margin: 0px;
             }
@@ -65,7 +66,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: @popup-background;
+                background-color: rgba(239, 239, 239, 0.95);
             }
         }
     }

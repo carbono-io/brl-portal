@@ -15,6 +15,7 @@
             var PROJECT_NAME_MAX_LENGTH = 60;
             var submitButton = this.$.createProjectButton;
             var projectNameInput = this.$.projectName;
+            var thisElement = this;
             projectNameInput.addEventListener("keyup", validateProjectName);
             projectNameInput.addEventListener("focusout", validateProjectName);
             submitButton.disabled = true;
@@ -37,10 +38,10 @@
                 if (value === "" || value.length > PROJECT_NAME_MAX_LENGTH) {
                     validName = false;
                     submitButton.disabled = true;
-                    projectNameInput.parentElement.className += " error";
+                    thisElement.toggleClass('error', true, projectNameInput.parentElement);
                 } else {
                     validName = true;
-                    projectNameInput.parentElement.className = "input-container";
+                    thisElement.toggleClass('error', false, projectNameInput.parentElement);
                 }
                 enableDisableSubmitButton();
             }
@@ -48,7 +49,6 @@
         openCreatePopup: function() {
             // Init
             this.$.projectName.value = '';
-            this.$.projectName.parentElement.className = "input-container";
             this.$.projectDescription.value = '';
             this.$.createProjectButton.disabled = true;
             this.buttonContent = "Criar projeto";
@@ -121,12 +121,6 @@
             if (!loading && !hasProjects) {
                 this.openCreatePopup();
             }
-
-            this.toggleClass('empty', !hasProjects, this.$.allProjects);
-            this.toggleClass('projects', hasProjects, this.$.allProjects);
-
-            this.toggleClass('hidden', loading || hasProjects, this.$$("#allProjects h2"));
-            this.toggleClass('hidden', loading || !hasProjects, this.$$("#allProjects template"));
         }
 
     });

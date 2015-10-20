@@ -12,7 +12,7 @@
 <dom-module id="project-page-styles"><template><style>
 :host #project-page-wrapper {
   line-height: 1.5;
-  overflow-x: hidden;
+  overflow: hidden;
   min-width: 700px;
   max-width: 1200px;
   width: 80%;
@@ -36,57 +36,50 @@
   color: #000;
 }
 :host #project-page-wrapper #allProjects {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   padding: 0 5px;
-}
-:host #project-page-wrapper #allProjects.empty {
-  display: block;
-  width: 100%;
-  height: 50%;
-  text-align: center;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
-:host #project-page-wrapper #allProjects.empty h2 {
-  font-weight: normal;
-  color: #6D6D6D;
-  font-size: 2em;
+:host #project-page-wrapper #allProjects carbo-project-card {
+  min-width: 245px;
+  margin-bottom: 3.5%;
 }
-:host #project-page-wrapper #allProjects.projects {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0 5px;
+@media (orientation: landscape) {
+  :host #project-page-wrapper #allProjects carbo-project-card {
+    width: 31%;
+  }
+  :host #project-page-wrapper #allProjects carbo-project-card:nth-child(3n+2) {
+    margin: 0 3.5%;
+  }
 }
-:host #project-page-wrapper #allProjects .hidden {
-  display: none;
+@media (max-width: 1050px) {
+  :host #project-page-wrapper #allProjects carbo-project-card {
+    width: 47%;
+  }
+  :host #project-page-wrapper #allProjects carbo-project-card:nth-child(2n+1) {
+    margin-right: 4%;
+  }
+  :host #project-page-wrapper #allProjects carbo-project-card:nth-child(3n+2) {
+    margin: 0 0;
+  }
+}
+@media (orientation: portrait) {
+  :host #project-page-wrapper #allProjects carbo-project-card {
+    width: 48%;
+  }
+  :host #project-page-wrapper #allProjects carbo-project-card:nth-child(2n+1) {
+    margin-right: 4%;
+  }
+  :host #project-page-wrapper #allProjects carbo-project-card:nth-child(3n+2) {
+    margin: 0 0;
+  }
 }
 :host #createPopup {
   display: -webkit-flex;
