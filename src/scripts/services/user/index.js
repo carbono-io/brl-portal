@@ -50,7 +50,7 @@ UserServiceClient.prototype.getLoggedUserData = function () {
     }, 1000);
 
     return defer.promise;
-}
+};
 
 // export the class
 module.exports = UserServiceClient;

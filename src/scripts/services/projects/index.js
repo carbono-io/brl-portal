@@ -17,14 +17,18 @@ var uuid = require('node-uuid');
  */
 function ProjectsServiceClient(config) {
     this.config = config;
+    this.redirectService = config.redirectService;
 }
 
 ProjectsServiceClient.prototype.read = function (data) {
     var token = window.localStorage.getItem("token");
     console.log("the stored token was " + token);
     var defer = Q.defer();
-    var getProjectsUrl = 'http://localhost:7877/imperial/projects';
+
+    var getProjectsUrl = 'http://hom.api.carbono.io/imp/projects';
     var defaultImage = '../../../brl/img/placeholder-project-img.png';
+    var redirectService = this.redirectService;
+
     request
         .get(getProjectsUrl)
         .set('Content-Type', 'application/json')
@@ -33,28 +37,40 @@ ProjectsServiceClient.prototype.read = function (data) {
         .end(function (err, res) {
 
             setTimeout(function () {
-                if (res.body.data) {
-                    var projects = [];
-                    for (var i in res.body.data.items) {
-                        try {
-                            var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
-                            res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
-                            dateAux = new Date(res.body.data.items[i].project.createdAt);
-                            res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
-                            res.body.data.items[i].project.img = defaultImage;
-                            projects.push(res.body.data.items[i].project);
-                        } catch (e) {
-                            // Log
-                            res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
-                            res.body.data.items[i].project.createdAt = formatBrDate(new Date());
-                            res.body.data.items[i].project.img = defaultImage;
-                            projects.push(res.body.data.items[i].project);
-                        }
-                        
+                if (err) {
+                    if (err.status === 401) {
+                        redirectService.redirectLogin();
+                    } else {
+                        defer.reject(err);
                     }
-                    defer.resolve(projects);
                 } else {
-                    defer.reject(res.body.error);
+                    if (res && res.body && res.body.data) {
+                        var projects = [];
+                        for (var i in res.body.data.items) {
+                            try {
+                                var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
+                                res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
+                                dateAux = new Date(res.body.data.items[i].project.createdAt);
+                                res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
+                                res.body.data.items[i].project.img = defaultImage;
+                                projects.push(res.body.data.items[i].project);
+                            } catch (e) {
+                                // Log
+                                res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
+                                res.body.data.items[i].project.createdAt = formatBrDate(new Date());
+                                res.body.data.items[i].project.img = defaultImage;
+                                projects.push(res.body.data.items[i].project);
+                            }
+
+                        }
+                        defer.resolve(projects);
+                    } else {
+                        if (res && res.body) {
+                            defer.reject(res.body.error);
+                        } else {
+                            defer.reject();
+                        }
+                    }
                 }
             }, 500);
         });
@@ -81,7 +97,7 @@ ProjectsServiceClient.prototype.create = function (projectData) {
             ],
         }
     );
-    var createProjectsUrl = 'http://localhost:7877/imperial/projects';
+    var createProjectsUrl = 'http://hom.api.carbono.io/mc/projects';
     var token = window.localStorage.getItem("token");
     request
         .post(createProjectsUrl)
@@ -92,14 +108,18 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         .end(function (err, res) {
 
             setTimeout(function () {
-                if (res.body.data) {
-                    defer.resolve(res.body.data.items[0].project);
+                if (res) {
+                    if (res.body.data) {
+                        defer.resolve(res.body.data.items[0].project);
+                    } else {
+                        defer.reject(res.body.error);
+                    }
                 } else {
                     console.log(res.body.error)
-                    defer.reject(res.body.error);
+                    defer.reject();
                 }
             }, 1000);
-            
+
         });
 
     return defer.promise;

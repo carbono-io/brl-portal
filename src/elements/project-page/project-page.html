@@ -21,7 +21,6 @@
 
             <!-- project cards -->
             <div id="allProjects">
-                <h2>Nenhum projeto criado :(</h2>
                 <template
                     is="dom-repeat"
                     items="{{ projects }}"
@@ -38,6 +37,10 @@
         <carbo-popup id="createPopup">
             <form id="createForm">
                 <h2>Informações sobre o projeto:</h2>
+
+                <div class="input-general-error">
+                    <p>Falha ao enviar para o servidor.</p>
+                </div>
 
                 <div class="input-container">
                     <input
@@ -66,7 +69,7 @@
                         value="{{newProjDescription::input}}"
                     ></textarea>
                 </div>
-                <p data-i18n="createForm.required" class= "required">*Respostas obrigatórias</p>
+                <p data-i18n="createForm.required" class= "required">*Campos obrigatórios</p>
 
                 <button
                     id="createProjectButton"
@@ -75,7 +78,7 @@
                     data-i18n="[value]createForm.submit"
                     class="submit-button"
                     on-click="submitCreateProject"
-                >Criar projeto</button>
+                >{{buttonContent}}</button>
             </form>
         </carbo-popup>
     </template>

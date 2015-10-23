@@ -11,9 +11,14 @@ module.exports = function (carbo, config) {
      * Data about the current logged user
      */
     carbo.set('userData', {});
-    
+
     /**
      * Array of projects of the user
      */
-    carbo.set('userProjects', []);
+    carbo.set('userProjects', null);
+
+    /**
+     * Error
+     */
+    carbo.set('err', null);
 };

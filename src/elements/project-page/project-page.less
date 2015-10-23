@@ -4,16 +4,15 @@
 
 :host {
     #project-page-wrapper {
-        font-family: @font-family, sans-serif;
         line-height: 1.5;
-        overflow-x: hidden;
+        overflow: hidden;
         .ContentSize;
 
         #title-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             height: 130px;
+            justify-content: space-between;
 
             h1 {
                 font-size: 30px;
@@ -23,32 +22,44 @@
         }
 
         #allProjects {
-            &.empty {
-                display: block;
-                width: 100%;
-                height: 50%;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            padding: 0 5px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
 
-                h2 {
-                    font-weight: normal;
-                    color: @darkgrey;
-                    font-size: 2em;
+            carbo-project-card {
+                min-width: 245px;
+                margin-bottom: 3.5%;
+
+                // tablet landscape / monitors: 3 columns
+                @media (orientation: landscape) {
+                    width: 31%;
+                    &:nth-child(3n+2) {
+                        margin: 0 3.5%;
+                    }
                 }
-            }
 
-            &.projects {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0 5px;
-            }
+                // width for 2 columns
+                @media (max-width: 1050px) {
+                    width: 47%;
+                    &:nth-child(2n+1) {
+                        margin-right: 4%;
+                    }
+                    &:nth-child(3n+2) {
+                        margin: 0 0;
+                    }
+                }
 
-            .hidden {
-                display: none;
+                // tablet portrait: 2 columns
+                @media (orientation: portrait) {
+                    width: 48%;
+                    &:nth-child(2n+1) {
+                        margin-right: 4%;
+                    }
+                    &:nth-child(3n+2) {
+                        margin: 0 0;
+                    }
+                }
             }
         }
     }
@@ -59,37 +70,48 @@
         justify-content: center;
 
         form {
-            margin: 0 auto;
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.5;
+            background-color: @popup-background;
             display: flex;
             flex-direction: column;
-            align-items:center;
+            align-items: center;
+            margin: 0 auto;
             justify-content: center;
+            line-height: 1.5;
             max-width: 600px;
             min-width: 300px;
-            width: 30%;
+            width: 380px;
             height: 100%;
+
+            &.general-error {
+                .input-general-error {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    margin: 0;
+                    color: coral;
+                    width: 100%;
+
+                    p {
+                        margin-top: 4px;
+                    }
+                }
+            }
+
+            .input-general-error {
+                display: none;
+            }
 
             h2 {
                 width: 100%;
-                margin-bottom: 40px;
+                margin: 0 0 48px 0;
                 font-weight: normal;
             }
 
-            p {
-                width: 100%;
-                margin: 0px 0px 0px 16px;
-                line-height: 1;
-                text-align: left;
-            }
-
             .input-container {
-                margin-bottom: 20px;
+                margin-bottom: 24px;
                 width: 100%;
 
                 input {
-
                     width: 100% ;
                     height: 56px;
                     outline:none;
@@ -101,14 +123,15 @@
                 }
 
                 textarea {
-
                     width: 100% ;
-                    height: 160px;
+                    height: 102px;
                     outline:none;
-                    font-size: 16px;
+                    font-family: @font-family;
+                    font-size: 17px;
                     color: @mediumgrey;
                     border: none;
-                    padding: 16px;
+                    padding-left: 17px;
+                    padding-top: 16px;
                     box-sizing: border-box;
                 }
 
@@ -117,11 +140,8 @@
                 }
 
                 &.error {
-                    input {
-                        border: 1px solid coral;
-                    }
 
-                    textarea {
+                    input {
                         border: 1px solid coral;
                     }
 
@@ -134,13 +154,25 @@
 
                         p {
                             margin-top: 4px;
-                            margin-left: 16px;
                         }
                     }
                 }
             }
 
+            .input-container:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .required {
+                width: 100%;
+                font-size: 14px;
+                color: @mediumgrey;
+                margin-bottom: 0;
+
+            }
+
             .submit-button {
+                margin-top: 48px;
                 width:100%;
             }
         }

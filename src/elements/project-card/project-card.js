@@ -15,6 +15,10 @@
                 notify: true,
             }
         },
-        
+
+        editProject: function () {
+            this.$.loadingProject.open();
+            this.$.loadingProject.toggleLoading(true);
+        }
     });
 })();
