@@ -1,0 +1,98 @@
+@import "../../less/variables.less";
+
+:host {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+        h2 {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            font-weight: normal;
+        }
+
+        button {
+            margin-top: 48px;
+            width: 100%;
+        }
+
+        &.general-error {
+            .input-general-error {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                margin: 0;
+                color: coral;
+
+                p {
+                    margin-top: 4px;
+                }
+            }
+        }
+
+        .input-general-error {
+            display: none;
+        }
+
+        .input-container {
+            margin-bottom: 24px;
+            width: 100%;
+
+            input {
+
+                width: 100% ;
+                height: 56px;
+                outline:none;
+                font-size: 16px;
+                color: @mediumgrey;
+                border: none;
+                padding-left: 16px;
+                box-sizing: border-box;
+            }
+
+            .input-error {
+                display: none;
+            }
+
+            &.error {
+
+                input[name="email"] {
+                    border: 1px solid coral;
+                }
+
+                .input-error {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    margin: 0;
+                    color: coral;
+
+                    p {
+                        margin-top: 4px;
+                    }
+                }
+
+            }
+
+        }
+
+        .input-container:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .required {
+            width: 100%;
+            font-size: 14px;
+            color: @mediumgrey;
+            margin-bottom: 0;
+
+        }
+    }
+}

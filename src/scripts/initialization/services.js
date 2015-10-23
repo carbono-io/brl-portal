@@ -18,7 +18,7 @@ module.exports = function (carbo, config) {
 
     // localstorage service
     var localStorage = new LocalStorageAPI(config);
-    
+
     // instantiate a user service client,
     // as it is a requirement for all other services
     var userService = new UserServiceClient({
@@ -26,13 +26,14 @@ module.exports = function (carbo, config) {
         localStorage: localStorage,
     });
 
+    var redirectService = new RedirectService({
+        userService: userService,
+    });
+
     var projectsService = new ProjectsServiceClient({
         location: config.projectsServiceLocation,
         userService: userService,
-    });
-    
-    var redirectService = new RedirectService({
-        userService: userService,
+        redirectService: redirectService,
     });
 
     // set services onto carbo main scope, so that
@@ -41,6 +42,7 @@ module.exports = function (carbo, config) {
     carbo.set('services.userService', userService);
     carbo.set('services.projectsService', projectsService);
     carbo.set('services.redirectService', redirectService);
+    carbo.set('services.localStorage', localStorage);
 
     // return all services as a result of the initialization
     return carbo.get('services');

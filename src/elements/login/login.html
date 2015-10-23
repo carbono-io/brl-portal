@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../basic/popup/popup.html">
+<link rel="import" href="../basic/button/button.html">
+<link rel="import" href="./login-styles.html">
+
+<dom-module id="carbo-login">
+    <style include="login-styles"></style>
+
+    <template>
+        <form>
+            <h2 data-i18n="[html]loginForm.betaInvite">Faça seu login!</h2>
+
+            <div class="input-container">
+                <input
+                    type="email"
+                    data-i18n="[placeholder]loginForm.emailPlaceholder"
+                    placeholder="e-mail*"
+                    name="email"
+                    class="register-data"
+                    maxlength="200"
+                    value="{{email::input}}"
+                >
+                <div class="input-error">
+                    <p data-i18n="loginForm.invalidEmail">
+                        Seu e-mail não está correto. Ele deve seguir o formato: exemplo@exemplo.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input
+                    type="password"
+                    data-i18n="[placeholder]loginForm.passwordPlaceholder"
+                    placeholder="senha*"
+                    name="password"
+                    class="register-data"
+                    maxlength="60"
+                    value="{{password::input}}"
+                >
+                <div class="input-error">
+                    <p data-i18n="loginForm.invalidPassword">Erro no login. Tente novamente</p>
+                </div>
+            </div>
+
+            <p data-i18n="loginForm.required" class= "required">*Respostas obrigatórias</p>
+
+            <button is="carbo-button" on-click="submit" data-i18n="[value]loginForm.submit">Entrar</button>
+        </form>
+    </template>
+
+    <script src="login.js"></script>
+</dom-module>

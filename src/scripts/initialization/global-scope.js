@@ -21,4 +21,9 @@ module.exports = function (carbo, config) {
      * Error
      */
     carbo.set('err', null);
+
+    /**
+     * Last path to recover
+     */
+    carbo.set('lastPath', '/');
 };

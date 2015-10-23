@@ -36,41 +36,43 @@ module.exports = function (carbo, config, services, components) {
      */
     page('/projects', function () {
 
+        carbo.set('route', 'projects');
+        carbo.set('lastPath', '/projects');
+
         // check if user is logged
-        userService.getLoggedUserData()
-            .then(function (userData) {
-                carbo.set('route', 'projects');
-                carbo.set('userData', userData);
-
-                console.log(userData);
-
-                // retrieve projects
-                return projectsService.read({
-                    owner: userData.id,
-                    email: userData.email,
-                });
-
-            }, function (err) {
-                // user not logged
-                // redirect
-                page('/login');
-            })
-            .then(function (userProjects) {
-
-                console.log(userProjects);
-
-                carbo.set('userProjects', userProjects);
-            },
-            function (err) {
-                console.log(err);
-                carbo.set('err', err);
-                page('/error');
-            }
-        )
-            .done();
+        // userService.getLoggedUserData()
+        //     .then(function (userData) {
+        //         carbo.set('route', 'projects');
+        //         carbo.set('userData', userData);
+        //
+        //         console.log(userData);
+        //
+        //         // retrieve projects
+        return projectsService.read();
+        //
+        //     }, function (err) {
+        //         // user not logged
+        //         // redirect
+        //         page('/login');
+        //     })
+        //     .then(function (userProjects) {
+        //
+        //         console.log(userProjects);
+        //
+        //         carbo.set('userProjects', userProjects);
+        //     },
+        //     function (err) {
+        //         console.log(err);
+        //         carbo.set('err', err);
+        //         page('/error');
+        //     }
+        // )
+        //     .done();
     });
 
     page('/createProject', function () {
+
+        carbo.set('lastPath', '/createProject');
 
         // check if user is logged
         userService.getLoggedUserData()

@@ -14,12 +14,20 @@ function RedirectService() {
 }
 
 RedirectService.prototype.redirectProjects = function () {
-    
+
     page('/brl');
 };
 
 RedirectService.prototype.redirectLogin = function () {
     page('/login');
+};
+
+RedirectService.prototype.redirectHome = function () {
+    page('/');
+};
+
+RedirectService.prototype.redirectTo = function (path) {
+    page(path);
 };
 
 // export the class

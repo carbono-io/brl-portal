@@ -3,6 +3,10 @@
 
     // Register the element with Polymer
     Polymer({
-        is: 'carbo-header'
+        is: 'carbo-header',
+
+        toHomeScreen: function () {
+            services.redirectService.redirectHome();
+        }
     });
 })();

@@ -1,6 +1,11 @@
 'use strict';
 
 var Q = require('q');
+var _ = require('lodash');
+var request = require('superagent');
+var CJM = require('carbono-json-messages');
+var pjson = require('../../../../package.json');
+var uuid = require('node-uuid');
 
 var REQUIRED_CONFIGURATIONS = [
     'localStorage'
@@ -22,12 +27,50 @@ function UserServiceClient(config) {
     this.localStorage = config.localStorage;
 }
 
+UserServiceClient.prototype.login = function (data) {
+    var defer = Q.defer();
+
+    var authUrl = 'http://hom.api.carbono.io/auth/oauth2/token';
+    var clientId = '666';
+    var clientSecret = 'k95j05083h08h';
+
+    request
+        .post(authUrl)
+        .set('Authorization', 'Basic ' + window.btoa(clientId + ':' + clientSecret))
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Accept', 'application/json')
+        .send({
+            grant_type: "password",
+            username: data.email,
+            password: data.password,
+            scope: ""
+        })
+        .end(function (err, res) {
+
+            setTimeout(function () {
+                if (err) {
+                    defer.reject(err);
+                } else {
+                    if (res.body && res.body.access_token && res.body.access_token.value) {
+                        defer.resolve(res.body.access_token.value);
+                    } else {
+                        defer.reject();
+                    }
+                }
+            }, 500);
+        });
+
+    // defer.resolve('aJE5uR6gKY4QiP8Kkg1rTGOUp3Zep72NxS41vbpW1RHX8jO10gvL0m3tInsOf8NFTsDRf96f4Tw5OvaI5fXWL68520gSNqr7cLyEoTlrSXFdv4sGf4kIFRTxiXetLe9nYLLsVa85TADkXxTulzcGJMwasit6Fc9mGC9oZCSQ0UeqwtXGBAEGwGPVIzg6fQDDpBahkXP737ZJuUOtq6apyNpfybbsG4kJVYv2zYrNjQFX8T2jkkA9q095tIJD98p7');
+
+    return defer.promise;
+};
+
 /**
  * Verifies if the user is logged
- * @return {Promise -> Boolean} 
+ * @return {Promise -> Boolean}
  */
 UserServiceClient.prototype.isLogged = function () {
-    
+
     var defer = Q.defer();
 
     setTimeout(function () {

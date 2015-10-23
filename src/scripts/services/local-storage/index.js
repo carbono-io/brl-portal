@@ -6,13 +6,6 @@
 
 var _ = require('lodash');
 
-var fakeData = {
-    userToken: '10293inkj1y37812y12301i2jeio123'
-};
-
-
-
-
 var STORAGE = window.localStorage;
 
 function LocalStorageAPI(config) {
@@ -28,7 +21,6 @@ LocalStorageAPI.prototype.getItem = function (keyName) {
 };
 
 LocalStorageAPI.prototype.setItem = function (keyName, value) {
-
     // convert value to string, if it is not
     value = (typeof value === 'object') ? JSON.stringify(value) : value;
 

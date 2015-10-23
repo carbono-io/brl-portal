@@ -20,7 +20,7 @@ function ProjectsServiceClient(config) {
     this.redirectService = config.redirectService;
 }
 
-ProjectsServiceClient.prototype.read = function (data) {
+ProjectsServiceClient.prototype.read = function () {
     var token = window.localStorage.getItem("token");
     console.log("the stored token was " + token);
     var defer = Q.defer();
@@ -99,6 +99,8 @@ ProjectsServiceClient.prototype.create = function (projectData) {
     );
     var createProjectsUrl = 'http://hom.api.carbono.io/mc/projects';
     var token = window.localStorage.getItem("token");
+    var redirectService = this.redirectService;
+
     request
         .post(createProjectsUrl)
         .set('Content-Type', 'application/json')
@@ -108,15 +110,23 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         .end(function (err, res) {
 
             setTimeout(function () {
-                if (res) {
-                    if (res.body.data) {
-                        defer.resolve(res.body.data.items[0].project);
+                if (err) {
+                    if (err.status === 401) {
+                        redirectService.redirectLogin();
                     } else {
-                        defer.reject(res.body.error);
+                        defer.reject(err);
                     }
                 } else {
-                    console.log(res.body.error)
-                    defer.reject();
+                    if (res) {
+                        if (res.body.data) {
+                            defer.resolve(res.body.data.items[0].project);
+                        } else {
+                            defer.reject(res.body.error);
+                        }
+                    } else {
+                        console.log(res.body.error)
+                        defer.reject();
+                    }
                 }
             }, 1000);
 
