@@ -22,10 +22,9 @@ function ProjectsServiceClient(config) {
 
 ProjectsServiceClient.prototype.read = function () {
     var token = window.localStorage.getItem("token");
-    console.log("the stored token was " + token);
     var defer = Q.defer();
 
-    var getProjectsUrl = 'http://hom.api.carbono.io/imp/projects';
+    var getProjectsUrl = 'http://hom.api.carbono.io/imp/projects/';
     var defaultImage = '../../../brl/img/placeholder-project-img.png';
     var redirectService = this.redirectService;
 
@@ -35,44 +34,41 @@ ProjectsServiceClient.prototype.read = function () {
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function (err, res) {
-
-            setTimeout(function () {
-                if (err) {
-                    if (err.status === 401) {
-                        redirectService.redirectLogin();
-                    } else {
-                        defer.reject(err);
-                    }
+            if (err) {
+                if (err.status === 401) {
+                    redirectService.redirectLogin();
                 } else {
-                    if (res && res.body && res.body.data) {
-                        var projects = [];
-                        for (var i in res.body.data.items) {
-                            try {
-                                var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
-                                res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
-                                dateAux = new Date(res.body.data.items[i].project.createdAt);
-                                res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
-                                res.body.data.items[i].project.img = defaultImage;
-                                projects.push(res.body.data.items[i].project);
-                            } catch (e) {
-                                // Log
-                                res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
-                                res.body.data.items[i].project.createdAt = formatBrDate(new Date());
-                                res.body.data.items[i].project.img = defaultImage;
-                                projects.push(res.body.data.items[i].project);
-                            }
+                    defer.reject(err);
+                }
+            } else {
+                if (res && res.body && res.body.data) {
+                    var projects = [];
+                    for (var i in res.body.data.items) {
+                        try {
+                            var dateAux = new Date(res.body.data.items[i].project.modifiedAt);
+                            res.body.data.items[i].project.modifiedAt = formatBrDate(dateAux);
+                            dateAux = new Date(res.body.data.items[i].project.createdAt);
+                            res.body.data.items[i].project.createdAt = formatBrDate(dateAux);
+                            res.body.data.items[i].project.img = defaultImage;
+                            projects.push(res.body.data.items[i].project);
+                        } catch (e) {
+                            // Log
+                            res.body.data.items[i].project.modifiedAt = formatBrDate(new Date());
+                            res.body.data.items[i].project.createdAt = formatBrDate(new Date());
+                            res.body.data.items[i].project.img = defaultImage;
+                            projects.push(res.body.data.items[i].project);
+                        }
 
-                        }
-                        defer.resolve(projects);
+                    }
+                    defer.resolve(projects);
+                } else {
+                    if (res && res.body) {
+                        defer.reject(res.body.error);
                     } else {
-                        if (res && res.body) {
-                            defer.reject(res.body.error);
-                        } else {
-                            defer.reject();
-                        }
+                        defer.reject();
                     }
                 }
-            }, 500);
+            }
         });
 
     return defer.promise;
@@ -97,7 +93,8 @@ ProjectsServiceClient.prototype.create = function (projectData) {
             ],
         }
     );
-    var createProjectsUrl = 'http://hom.api.carbono.io/mc/projects';
+
+    var createProjectsUrl = 'http://hom.api.carbono.io/mc/projects/';
     var token = window.localStorage.getItem("token");
     var redirectService = this.redirectService;
 
@@ -105,31 +102,26 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         .post(createProjectsUrl)
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
-        .set('Accept', 'application/json')
         .send(createProjectObj)
         .end(function (err, res) {
-
-            setTimeout(function () {
-                if (err) {
-                    if (err.status === 401) {
-                        redirectService.redirectLogin();
+            if (err) {
+                if (err.status === 401) {
+                    redirectService.redirectLogin();
+                } else {
+                    defer.reject(err);
+                }
+            } else {
+                if (res) {
+                    if (res.body.data) {
+                        defer.resolve(res.body.data.items[0].project);
                     } else {
-                        defer.reject(err);
+                        defer.reject(res.body.error);
                     }
                 } else {
-                    if (res) {
-                        if (res.body.data) {
-                            defer.resolve(res.body.data.items[0].project);
-                        } else {
-                            defer.reject(res.body.error);
-                        }
-                    } else {
-                        console.log(res.body.error)
-                        defer.reject();
-                    }
+                    console.log(res.body.error)
+                    defer.reject();
                 }
-            }, 1000);
-
+            }
         });
 
     return defer.promise;

@@ -39,35 +39,15 @@ module.exports = function (carbo, config, services, components) {
         carbo.set('route', 'projects');
         carbo.set('lastPath', '/projects');
 
-        // check if user is logged
-        // userService.getLoggedUserData()
-        //     .then(function (userData) {
-        //         carbo.set('route', 'projects');
-        //         carbo.set('userData', userData);
-        //
-        //         console.log(userData);
-        //
-        //         // retrieve projects
-        return projectsService.read();
-        //
-        //     }, function (err) {
-        //         // user not logged
-        //         // redirect
-        //         page('/login');
-        //     })
-        //     .then(function (userProjects) {
-        //
-        //         console.log(userProjects);
-        //
-        //         carbo.set('userProjects', userProjects);
-        //     },
-        //     function (err) {
-        //         console.log(err);
-        //         carbo.set('err', err);
-        //         page('/error');
-        //     }
-        // )
-        //     .done();
+        projectsService.read()
+        .then(function (userProjects) {
+            carbo.set('userProjects', userProjects);
+        },
+        function (err) {
+            carbo.set('err', err);
+            page('/error');
+        })
+        .done();
     });
 
     page('/createProject', function () {
