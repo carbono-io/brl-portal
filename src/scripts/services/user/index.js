@@ -6,6 +6,7 @@ var request = require('superagent');
 var CJM = require('carbono-json-messages');
 var pjson = require('../../../../package.json');
 var uuid = require('node-uuid');
+var CONSTANTS = require('../../constants');
 
 var REQUIRED_CONFIGURATIONS = [
     'localStorage'
@@ -30,12 +31,11 @@ function UserServiceClient(config) {
 UserServiceClient.prototype.login = function (data) {
     var defer = Q.defer();
 
-    var authUrl = 'http://hom.api.carbono.io/auth/oauth2/token';
     var clientId = '666';
     var clientSecret = 'k95j05083h08h';
 
     request
-        .post(authUrl)
+        .post(CONSTANTS.API.AUTH)
         .set('Authorization', 'Basic ' + window.btoa(clientId + ':' + clientSecret))
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .set('Accept', 'application/json')

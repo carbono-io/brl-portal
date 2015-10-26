@@ -11,6 +11,7 @@ var request = require('superagent');
 var CJM = require('carbono-json-messages');
 var pjson = require('../../../../package.json');
 var uuid = require('node-uuid');
+var CONSTANTS = require('../../constants');
 
 /**
  * Class responsible for dealing with the projects service.
@@ -24,12 +25,11 @@ ProjectsServiceClient.prototype.read = function () {
     var token = window.localStorage.getItem("token");
     var defer = Q.defer();
 
-    var getProjectsUrl = 'http://hom.api.carbono.io/imp/projects/';
     var defaultImage = '../../../brl/img/placeholder-project-img.png';
     var redirectService = this.redirectService;
 
     request
-        .get(getProjectsUrl)
+        .get(CONSTANTS.API.GET_PROJECTS)
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
@@ -94,12 +94,11 @@ ProjectsServiceClient.prototype.create = function (projectData) {
         }
     );
 
-    var createProjectsUrl = 'http://hom.api.carbono.io/mc/projects/';
     var token = window.localStorage.getItem("token");
     var redirectService = this.redirectService;
 
     request
-        .post(createProjectsUrl)
+        .post(CONSTANTS.API.CREATE_PROJECTS)
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
         .send(createProjectObj)
