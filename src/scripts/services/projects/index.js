@@ -29,7 +29,7 @@ ProjectsServiceClient.prototype.read = function () {
     var redirectService = this.redirectService;
 
     request
-        .get(CONSTANTS.API.GET_PROJECTS)
+        .get(CONSTANTS.api.getProjects)
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
@@ -98,7 +98,7 @@ ProjectsServiceClient.prototype.create = function (projectData) {
     var redirectService = this.redirectService;
 
     request
-        .post(CONSTANTS.API.CREATE_PROJECTS)
+        .post(CONSTANTS.api.createProject)
         .set('Content-Type', 'application/json')
         .set('Authorization', 'Bearer ' + token)
         .send(createProjectObj)

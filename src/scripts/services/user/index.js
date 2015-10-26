@@ -31,12 +31,11 @@ function UserServiceClient(config) {
 UserServiceClient.prototype.login = function (data) {
     var defer = Q.defer();
 
-    var clientId = '666';
-    var clientSecret = 'k95j05083h08h';
+    var authConfig = CONSTANTS.api.auth;
 
     request
-        .post(CONSTANTS.API.AUTH)
-        .set('Authorization', 'Basic ' + window.btoa(clientId + ':' + clientSecret))
+        .post(authConfig.url)
+        .set('Authorization', 'Basic ' + window.btoa(authConfig.clientId + ':' + authConfig.clientSecret))
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .set('Accept', 'application/json')
         .send({

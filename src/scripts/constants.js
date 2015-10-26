@@ -3,13 +3,17 @@
 /**
  * Define constants throughout the application here
  */
-var CONSTANTS = {
-    API: {
-        AUTH: "http://hom.api.carbono.io/auth/oauth2/token/",
-        GET_PROJECTS: "http://hom.api.carbono.io/imp/projects/",
-        CREATE_PROJECTS: "http://hom.api.carbono.io/mc/projects/"
+var constants = {
+    api: {
+        auth: {
+            url: "http://hom.api.carbono.io/auth/oauth2/token/",
+            clientId: "666",
+            clientSecret: "k95j05083h08h",
+        },
+        getProjects: "http://hom.api.carbono.io/imp/projects/",
+        createProject: "http://hom.api.carbono.io/mc/projects/"
     },
-    IDE: "http://www.google.com/"
+    ide: "http://www.google.com/"
 };
 
-module.exports = CONSTANTS;
+module.exports = constants;
