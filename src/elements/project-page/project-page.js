@@ -83,24 +83,19 @@
                 }, function (err) {
                     // user not logged
                     popup.toggleLoading(false);
-                    alert('Sessão expirada, por favor, faça login novamente');
                     popup.close();
                     redirectService.redirectLogin();
                 })
                 .then(function (projectCreated) {
                     popup.toggleLoading(false);
-                    alert('Projeto criado com sucesso!');
                     popup.close();
-                    redirectService.redirectProjects();
-                    // Message and page redirect
+                    redirectService.redirectIde(projectCreated.code);
                 }, function (err) {
                     popup.toggleLoading(false);
                     if (err.code === 403) {
-                        alert('Sessão expirada, por favor, faça login novamente');
                         popup.close();
                         redirectService.redirectLogin();
                     } else {
-                        alert('Erro ao criar projeto!');
                         popup.close();
                         redirectService.redirectProjects();
                     }

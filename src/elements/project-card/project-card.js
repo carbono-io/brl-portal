@@ -13,12 +13,17 @@
             project: {
                 type: Object,
                 notify: true,
+            },
+
+            services: {
+                type: Object
             }
         },
 
         editProject: function () {
             this.$.loadingProject.open();
             this.$.loadingProject.toggleLoading(true);
+            services.redirectService.redirectIde(this.project.code);
         }
     });
 })();
