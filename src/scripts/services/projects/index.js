@@ -25,7 +25,7 @@ ProjectsServiceClient.prototype.read = function () {
     var token = window.localStorage.getItem("token");
     var defer = Q.defer();
 
-    var defaultImage = '../../../brl/img/placeholder-project-img.png';
+    var defaultImage = '../../../iris/img/placeholder-project-img.png';
     var redirectService = this.redirectService;
 
     request
