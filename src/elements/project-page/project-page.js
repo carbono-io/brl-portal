@@ -53,6 +53,7 @@
             this.$.createProjectButton.disabled = true;
             this.buttonContent = "Criar projeto";
             this.toggleClass('general-error', false, this.$.createForm);
+            this.toggleAttribute('closable', true, this.$.createPopup);
             // Open
             this.$.createPopup.open();
         },
@@ -115,6 +116,7 @@
 
             if (!loading && !hasProjects) {
                 this.openCreatePopup();
+                this.toggleAttribute('closable', false, this.$.createPopup);
             }
         }
 

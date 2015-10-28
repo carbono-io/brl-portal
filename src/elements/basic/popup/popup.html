@@ -14,7 +14,16 @@
                         <img src="../../../img/logo_principal_carbono.png" />
                     </div>
 
-                    <iron-icon icon="close" id="close" on-click="close"></iron-icon>
+                    <template
+                        is="dom-if"
+                        if="{{closable}}"
+                        >
+                        <iron-icon
+                            icon="close"
+                            id="close"
+                            on-click="close">
+                        </iron-icon>
+                    </template>
                 </div>
 
                 <content></content>
