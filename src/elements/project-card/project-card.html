@@ -10,20 +10,20 @@
             <div class="editProject">
                 <img src="{{ project.img }}"></img>
                 <div>
-                    <button is="carbo-button" on-click="editProject">Editar projeto</button>
+                    <button is="carbo-button" on-click="editProject">Edit</button>
                 </div>
             </div>
             <div class="info">
                 <h1 class="name">{{ project.name }}</h1>
                 <h2 class="description">{{ project.description }}</h2>
 
-                <h3>criado em <span>{{ project.createdAt }}</span></h3>
-                <h3>modificado em <span>{{ project.modifiedAt }}</span></h3>
+                <h3>created in <span>{{ project.createdAt }}</span></h3>
+                <h3>last changes <span>{{ project.modifiedAt }}</span></h3>
             </div>
         </div>
         <carbo-popup id="loadingProject">
             <div>
-                <h2>Carregando projeto <span>{{project.name}}</span>...</h2>
+                <h2>Loading <span>{{project.name}}</span>...</h2>
             </div>
         </caro-popup>
     </template>

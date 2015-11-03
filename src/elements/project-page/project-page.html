@@ -13,10 +13,10 @@
 
             <div id="title-container">
                 <!-- title -->
-                <h1>Meus projetos</h1>
+                <h1>Projects</h1>
 
                 <!-- create new project -->
-                <button is="carbo-button" id="btnCreate" on-click="openCreatePopup">Criar Projeto</button>
+                <button is="carbo-button" id="btnCreate" on-click="openCreatePopup">New Project</button>
             </div>
 
             <!-- project cards -->
@@ -36,10 +36,10 @@
         <!-- popup create project -->
         <carbo-popup id="createPopup">
             <form id="createForm">
-                <h2>Informações sobre o projeto:</h2>
+                <h2>Project info:</h2>
 
                 <div class="input-general-error">
-                    <p>Falha ao enviar para o servidor.</p>
+                    <p>Sorry, we got an error while communicating to the server.</p>
                 </div>
 
                 <div class="input-container">
@@ -47,7 +47,7 @@
                         id="projectName"
                         type="text"
                         required="true"
-                        placeholder="nome do projeto*"
+                        placeholder="project name*"
                         name="name"
                         class="register-data"
                         maxlength="60"
@@ -55,7 +55,7 @@
                     >
                     <div class="input-error">
                         <p data-i18n="createForm.invalidProjectName">
-                            O nome do projeto é obrigatório
+                            Project name is required.
                         </p>
                     </div>
                 </div>
@@ -64,12 +64,12 @@
                     <textarea
                         id="projectDescription"
                         name="description"
-                        placeholder="descrição do projeto"
+                        placeholder="description"
                         class="register-data"
                         value="{{newProjDescription::input}}"
                     ></textarea>
                 </div>
-                <p data-i18n="createForm.required" class= "required">*Campos obrigatórios</p>
+                <p data-i18n="createForm.required" class= "required">* Required fields.</p>
 
                 <button
                     id="createProjectButton"

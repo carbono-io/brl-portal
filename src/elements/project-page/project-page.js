@@ -51,7 +51,7 @@
             this.$.projectName.value = '';
             this.$.projectDescription.value = '';
             this.$.createProjectButton.disabled = true;
-            this.buttonContent = "Criar projeto";
+            this.buttonContent = "New Project";
             this.toggleClass('general-error', false, this.$.createForm);
             this.toggleAttribute('closable', true, this.$.createPopup);
             // Open
@@ -105,7 +105,7 @@
             .catch(function (err) {
                 popup.toggleLoading(false);
                 thisElement.toggleClass('general-error', true, thisElement.$.createForm);
-                thisElement.buttonContent = 'Tentar novamente';
+                thisElement.buttonContent = 'Something gone wrong, please try again. :/';
             })
             .done();
         },
