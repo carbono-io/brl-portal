@@ -5,6 +5,14 @@
     Polymer({
         is: 'carbo-popup',
 
+        properties: {
+            closable: {
+                type: Boolean,
+                notify: true,
+                value: false
+            }
+        },
+
         open: function () {
             this.toggleClass("active", true, this.$.popupWrapper);
         },

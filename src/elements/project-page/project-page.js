@@ -51,8 +51,9 @@
             this.$.projectName.value = '';
             this.$.projectDescription.value = '';
             this.$.createProjectButton.disabled = true;
-            this.buttonContent = "Criar projeto";
+            this.buttonContent = "New Project";
             this.toggleClass('general-error', false, this.$.createForm);
+            this.toggleAttribute('closable', true, this.$.createPopup);
             // Open
             this.$.createPopup.open();
         },
@@ -83,24 +84,19 @@
                 }, function (err) {
                     // user not logged
                     popup.toggleLoading(false);
-                    alert('Sessão expirada, por favor, faça login novamente');
                     popup.close();
                     redirectService.redirectLogin();
                 })
                 .then(function (projectCreated) {
                     popup.toggleLoading(false);
-                    alert('Projeto criado com sucesso!');
                     popup.close();
-                    redirectService.redirectProjects();
-                    // Message and page redirect
+                    redirectService.redirectIde(projectCreated.code);
                 }, function (err) {
                     popup.toggleLoading(false);
                     if (err.code === 403) {
-                        alert('Sessão expirada, por favor, faça login novamente');
                         popup.close();
                         redirectService.redirectLogin();
                     } else {
-                        alert('Erro ao criar projeto!');
                         popup.close();
                         redirectService.redirectProjects();
                     }
@@ -109,7 +105,7 @@
             .catch(function (err) {
                 popup.toggleLoading(false);
                 thisElement.toggleClass('general-error', true, thisElement.$.createForm);
-                thisElement.buttonContent = 'Tentar novamente';
+                thisElement.buttonContent = 'Something gone wrong, please try again. :/';
             })
             .done();
         },
@@ -120,6 +116,7 @@
 
             if (!loading && !hasProjects) {
                 this.openCreatePopup();
+                this.toggleAttribute('closable', false, this.$.createPopup);
             }
         }
 

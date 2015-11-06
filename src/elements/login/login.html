@@ -1,5 +1,4 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../basic/popup/popup.html">
 <link rel="import" href="../basic/button/button.html">
 <link rel="import" href="./login-styles.html">
 
@@ -8,7 +7,7 @@
 
     <template>
         <form>
-            <h2 data-i18n="[html]loginForm.betaInvite">Faça seu login!</h2>
+            <h2 data-i18n="[html]loginForm.betaInvite">Login</h2>
 
             <div class="input-container">
                 <input
@@ -22,7 +21,7 @@
                 >
                 <div class="input-error">
                     <p data-i18n="loginForm.invalidEmail">
-                        Seu e-mail não está correto. Ele deve seguir o formato: exemplo@exemplo.com
+                        That doesn't seem like a valid address, try something like tom@gmail.com
                     </p>
                 </div>
             </div>
@@ -38,13 +37,13 @@
                     value="{{password::input}}"
                 >
                 <div class="input-error">
-                    <p data-i18n="loginForm.invalidPassword">Erro no login. Tente novamente</p>
+                    <p data-i18n="loginForm.invalidPassword">Login error, please try again.</p>
                 </div>
             </div>
 
-            <p data-i18n="loginForm.required" class= "required">*Respostas obrigatórias</p>
+            <p data-i18n="loginForm.required" class= "required">* Required fields</p>
 
-            <button is="carbo-button" on-click="submit" data-i18n="[value]loginForm.submit">Entrar</button>
+            <button is="carbo-button" on-click="submit" data-i18n="[value]loginForm.submit">Login</button>
         </form>
     </template>
 

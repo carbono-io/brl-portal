@@ -6,6 +6,7 @@
  */
 
 var page = require('page');
+var CONSTANTS = require('../../constants');
 
 /**
  * Class responsible for dealing with the projects service.
@@ -24,6 +25,10 @@ RedirectService.prototype.redirectLogin = function () {
 
 RedirectService.prototype.redirectHome = function () {
     page('/');
+};
+
+RedirectService.prototype.redirectIde = function (code) {
+    window.location = CONSTANTS.ide + code + '/';
 };
 
 RedirectService.prototype.redirectTo = function (path) {

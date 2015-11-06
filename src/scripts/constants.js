@@ -13,7 +13,7 @@ var constants = {
         getProjects: "http://hom.api.carbono.io/imp/projects/",
         createProject: "http://hom.api.carbono.io/mc/projects/"
     },
-    ide: "http://www.google.com/"
+    ide: "http://hom.carbono.io/ide/#!/projects/"
 };
 
 module.exports = constants;

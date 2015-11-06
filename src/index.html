@@ -19,7 +19,9 @@
 
     <template id="carbo" is="dom-bind">
 
-        <carbo-header></carbo-header>
+        <carbo-header
+            services="{{ services }}">
+        </carbo-header>
 
         <!-- main page set -->
         <iron-pages attr-for-selected="data-route" selected="{{ route }}">
